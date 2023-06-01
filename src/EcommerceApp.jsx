@@ -1,7 +1,13 @@
+import { AppRouter } from './router'
+import { AppTheme } from './theme/AppTheme'
 
 const EcommerceApp = () => {
   return (
-    <div>EcommerceApp</div>
+    <>
+      <AppTheme>
+        <AppRouter />
+      </AppTheme>
+    </>
   )
 }
 

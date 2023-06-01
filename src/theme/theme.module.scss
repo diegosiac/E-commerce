@@ -1,0 +1,82 @@
+// paper & background
+$paper: #ebebeb;
+
+$white: #ffffff;
+
+// primary
+$primaryLight: #393939;
+$primaryMain: #141414;
+$primaryDark: #1b4001;
+$primaryContrastText: #cfcfcf;
+
+// success
+$successLight: #61a0ff;
+$successMain: #3483fa;
+$successDark: #1f5bb6;
+$successContrastText: #fff;
+
+// error
+$errorLight: #ef9a9a;
+$errorMain: #f44336;
+$errorDark: #c62828;
+$errorContrastText: #fff;
+
+// warning
+$warningLight: #fff8e1;
+$warningMain: #ffe57f;
+$warningDark: #ffc107;
+$warningContrastText: #fff;
+
+// grey
+$grey50: #f8fafc;
+$grey100: #eef2f6;
+$grey200: #e3e8ef;
+$grey300: #cdd5df;
+$grey400: #bdbdbd;
+$grey500: #697586;
+$grey600: #4b5565;
+$grey700: #364152;
+$grey900: #121926;
+
+// Export as js object
+:export {
+	// paper & background
+	paper: $paper;
+
+	// primary
+	primaryLight: $primaryLight;
+	primaryMain: $primaryMain;
+	primaryDark: $primaryDark;
+	primaryContrastText: $primaryContrastText;
+
+	// success
+	successLight: $successLight;
+	successMain: $successMain;
+	successDark: $successDark;
+	successContrastText: $successContrastText;
+
+	// error
+	errorLight: $errorLight;
+	errorMain: $errorMain;
+	errorDark: $errorDark;
+	errorContrastText: $errorContrastText;
+
+	// warning
+	warningLight: $warningLight;
+	warningMain: $warningMain;
+	warningDark: $warningDark;
+	warningContrastText: $warningContrastText;
+
+	// grey
+	grey50: $grey50;
+	grey100: $grey100;
+	grey200: $grey200;
+	grey300: $grey300;
+	grey400: $grey400;
+	grey500: $grey500;
+	grey600: $grey600;
+	grey700: $grey700;
+	grey900: $grey900;
+
+	white: $white;
+}
