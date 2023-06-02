@@ -9,15 +9,14 @@ export const Search = () => {
     >
       <InputBase
         placeholder='Busca reparaciones y mas..'
-        className='ml-3'
+        className='ml-2 flex-grow'
       />
 
-      <Divider className='h-7 m-[0.5px]' orientation='vertical' />
+      <Divider className='h-7' orientation='vertical' />
 
       <IconButton
         type='button'
-        className='p-[10px]'
-        aria-label='search'
+        className=''
       >
         <SearchIcon />
       </IconButton>
