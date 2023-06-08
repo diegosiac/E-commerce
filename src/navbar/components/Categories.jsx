@@ -6,10 +6,10 @@ export const Categories = () => {
     <Box className='hidden md:block'>
       <List className='flex justify-between items-end'>
 
-        <ItemsLinksDesk title='Inicio' to='/home' />
-        <ItemsLinksDesk title='Reparaciónes' to='/categorys/repairs' />
-        <ItemsLinksDesk title='Componentes' to='/categorys/components' />
-        <ItemsLinksDesk title='Dispositivos' to='/categorys/devices' />
+        <ItemsLinksDesk title='Inicio' to='/' />
+        <ItemsLinksDesk title='Reparaciónes' to='/categories/repairs' />
+        <ItemsLinksDesk title='Componentes' to='/categories/components' />
+        <ItemsLinksDesk title='Dispositivos' to='/categories/devices' />
 
       </List>
     </Box>

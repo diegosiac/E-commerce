@@ -12,7 +12,7 @@ export const AuthLayout = ({ children, title }) => {
 
       <Grid
         item
-        component='main'
+        component='div'
         bgcolor='grey.50'
         className='max-w-[90%] p-6 sm:w-[450px] rounded-lg my-12'
       >

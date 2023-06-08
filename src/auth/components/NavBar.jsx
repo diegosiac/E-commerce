@@ -1,4 +1,5 @@
-import { Grid } from '@mui/material'
+import { Link as RouterLink } from 'react-router-dom'
+import { Grid, Link } from '@mui/material'
 import second from '../../assets/imgs/logos/logoP.png'
 
 export const NavBar = () => {
@@ -9,7 +10,9 @@ export const NavBar = () => {
       className='w-6/6 h-16 items-center'
       bgcolor='primary.main'
     >
-      <img src={second} alt='Geek Mobile Repair' className='h-10 ml-4' />
+      <Link component={RouterLink} to='/' className='ml-4'>
+        <img src={second} alt='Geek Mobile Repair' className='h-10' />
+      </Link>
     </Grid>
   )
 }

@@ -44,6 +44,11 @@ export default colors => ({
     fontWeight: 400,
     color: colors.grey500
   },
+  subtitle3: {
+    fontSize: '0.875rem',
+    fontWeight: 600,
+    color: colors.grey900
+  },
   caption: {
     color: colors.grey500,
     fontWeight: 400

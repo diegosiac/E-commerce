@@ -1,16 +1,10 @@
-import { useNavigate } from 'react-router-dom'
-import { Grid, Badge, IconButton } from '@mui/material'
+import { Link as RouterLink } from 'react-router-dom'
+import { Grid, Badge, IconButton, Link } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import { Search, MenuHam, Categories, UserIcon } from './components'
+import { Search, MenuHam, Categories, AcountUser } from './components'
 import logo from '../assets/imgs/logos/logoP.png'
 
 export const NavBar = () => {
-  const navigate = useNavigate()
-
-  const userName = 'Diego'
-
-  const onChangePage = () => navigate('/cart', { replace: true })
-
   return (
     <Grid
       container
@@ -19,7 +13,9 @@ export const NavBar = () => {
       bgcolor='primary.main'
     >
       <Grid item>
-        <img src={logo} alt='Geek Mobile Repair' className='h-10 ml-4 hidden md:block' />
+        <Link component={RouterLink} to='/' className='ml-4 hidden md:block'>
+          <img src={logo} alt='Geek Mobile Repair' className='h-10' />
+        </Link>
         <MenuHam />
       </Grid>
 
@@ -29,12 +25,9 @@ export const NavBar = () => {
       </Grid>
 
       <Grid className='flex'>
-        {
-					false
-					  ? <UserIcon userName={userName} to='/profile' />
-					  : <UserIcon userName='Inicar Sesion' to='/auth' />
-				}
-        <IconButton color='success' onClick={onChangePage}>
+        <AcountUser />
+
+        <IconButton color='success' LinkComponent={RouterLink} to='/cart'>
           <Badge badgeContent={4} color='success'>
             <ShoppingCartIcon className='text-white' />
           </Badge>

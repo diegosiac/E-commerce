@@ -44,22 +44,22 @@ export const MenuHam = () => {
               <ItemsLinks
                 title='Inicio'
                 icon={<HomeOutlined />}
-                to='/home'
+                to='/'
               />
               <ItemsLinks
                 title='Reparaciónes'
                 icon={<BuildCircleOutlined />}
-                to='/categorys/repairs'
+                to='/categories/repairs'
               />
               <ItemsLinks
                 title='Componentes'
                 icon={<SelectAllOutlined />}
-                to='/categorys/components'
+                to='/categories/components'
               />
               <ItemsLinks
                 title='Dispositivos'
                 icon={<Devices />}
-                to='/categorys/devices'
+                to='/categories/devices'
               />
 
             </List>
