@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Box, IconButton, Drawer, Divider, List } from '@mui/material'
 import { Menu, Close, BuildCircleOutlined, SelectAllOutlined, Devices, HomeOutlined } from '@mui/icons-material'
+import { useAuthStore } from '../../hooks'
 import { CardProfile, LoginSection, ItemsLinks } from './'
 
 export const MenuHam = () => {
+  const { user, status } = useAuthStore()
   const [open, setState] = useState(false)
 
   const toggleDrawer = (open) => () => setState(open)
@@ -66,8 +68,8 @@ export const MenuHam = () => {
           </Box>
 
           {
-            true
-              ? <CardProfile setState={setState} />
+            status === 'authenticated'
+              ? <CardProfile setState={setState} nameUser={user.name} />
               : <LoginSection setState={setState} />
           }
 

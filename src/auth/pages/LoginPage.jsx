@@ -1,22 +1,49 @@
-import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
+import { useMemo } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useFormik } from 'formik'
+import { object, string } from 'yup'
+import { Alert, Grid, Link, TextField, Typography } from '@mui/material'
+import { startLogin } from '../../store/auth'
 import { AuthLayout } from '../layout/AuthLayout'
+import { InputLoding, InputPassword } from '../components'
+import { useClearMessage } from '../../hooks'
+
+const initialValues = {
+  email: '',
+  password: ''
+}
+
+const validationSchema = object({
+  email: string()
+    .required('El correo es requerido')
+    .email('El correo no es válido'),
+  password: string()
+    .required('La contraseña es requerida')
+    .min(6, 'Debe tener al menos 6 caracteres')
+})
 
 export const LoginPage = () => {
-  const errorMessage = 'asdf'
-  const isAuthenticating = false
+  const { status, errorMessage } = useSelector(state => state.auth)
+  const isCheckingAuthentication = useMemo(() => status === 'checking', [status])
 
-  const onInputChange = () => {
+  const dispatch = useDispatch()
 
+  const createUser = (userData) => {
+    dispatch(startLogin(userData))
   }
 
-  const onSubmit = (e) => {
-    e.preventDefault()
-  }
+  useClearMessage()
+
+  const { handleSubmit, handleChange, errors, values } = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: createUser
+  })
 
   return (
     <AuthLayout title='Iniciar sesión'>
-      <form aria-label='submit-form' onSubmit={onSubmit}>
+      <form aria-label='submit-form' onSubmit={handleSubmit}>
         <Grid container>
           <Grid item xs={12} className='mt-4'>
             <TextField
@@ -24,61 +51,34 @@ export const LoginPage = () => {
               type='email'
               label='Correo'
               placeholder='correo@google.com'
-              // value='asdfasd'
-              onChange={onInputChange}
+              value={values.email}
+              onChange={handleChange}
               color='success'
-              inputProps={{
-                autoComplete: 'email'
-              }}
+              autoComplete='email'
               fullWidth
             />
           </Grid>
 
-          <Grid item xs={12} className='mt-4'>
-            <TextField
-              name='password'
-              type='password'
-              label='Contraseña'
-              placeholder='Contraseña'
-              // value='asdfasd'
-              onChange={onInputChange}
-              color='success'
-              inputProps={{
-                autoComplete: 'current-password'
-              }}
-              fullWidth
-            />
-          </Grid>
+          <InputPassword onHandleChange={handleChange} value={values.password} error={errors.password} />
 
-          <Grid
-            container
-            className={`mt-2 ${errorMessage ? '' : 'hidden'}`}
-          >
+          <Grid container className='my-4 mt-1'>
             <Grid
               item
               xs={12}
+              className={`${errorMessage ? '' : 'hidden'} mb-2`}
             >
-              <Alert severity='error'>{errorMessage}</Alert>
+              <Alert severity='error'>
+                {errorMessage}
+              </Alert>
             </Grid>
-          </Grid>
 
-          <Grid container className='my-4'>
-            <Grid item xs={12} className='pt-0'>
-              <Button
-                disabled={isAuthenticating}
-                type='submit'
-                variant='contained'
-                color='success'
-                className='bg-[#3483fa]'
-                fullWidth
-              >
-                Login
-              </Button>
+            <Grid item xs={12}>
+              <InputLoding loading={isCheckingAuthentication} text='Iniciar Sesión' />
             </Grid>
           </Grid>
 
           <Grid container direction='row' justifyContent='end'>
-            <Typography className='mr-2'>¿Eres nuevo en Hooney-Creams?</Typography>
+            <Typography className='mr-2'>¿Eres nuevo en GEEK MOBILE?</Typography>
             <Link component={RouterLink} color='inherit' to='/auth/register'>
               Crear una cuenta
             </Link>

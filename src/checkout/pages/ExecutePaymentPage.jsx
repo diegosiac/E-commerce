@@ -1,8 +1,8 @@
-import { Grid } from '@mui/material'
-import { PurchasesLayout } from '../layout/PurchasesLayout'
-import { DetailsShop, ItemProduct } from '../components'
+import { Grid, Typography } from '@mui/material'
+import { CheckoutStatusLayout } from '../layout/CheckoutStatusLayout'
+import { DetailsShop, ItemProduct } from '../../purchases/components'
 
-export const OrderDetailsPage = () => {
+export const ExecutePaymentPage = () => {
   const shoppingDay = '22 de mayo de 2023'
   const id = '702-9971393-4082604'
   const delivery = 'Entregado el 29 may. 2023'
@@ -11,7 +11,6 @@ export const OrderDetailsPage = () => {
   const addressLine1 = 'Calle 4 MZ 31 lt 26'
   const addressLine2 = 'VALLE DE LOS REYES'
   const addressCityOrRegionPC = 'LOS REYES ACAQUILPAN (LA PAZ), MEXICO, 56430'
-
   const products = [
     {
       urlImg: 'https://m.media-amazon.com/images/I/51JY0jJhPAL._SY90_.jpg',
@@ -26,13 +25,11 @@ export const OrderDetailsPage = () => {
       amount: 5
     }
   ]
-
   return (
-    <PurchasesLayout title='Detalles de la Compra'>
-      <Grid
-        container
-        className='flex-col mt-5'
-      >
+    <CheckoutStatusLayout title='Gracias por tu compra' boxColor='#00a650'>
+
+      <Grid container className='mb-8'>
+        <Typography variant='h4' component='h3' className='mb-3'>Detalles De La Compra</Typography>
         <DetailsShop
           shoppingDay={shoppingDay}
           id={id}
@@ -42,7 +39,10 @@ export const OrderDetailsPage = () => {
           addressLine2={addressLine2}
           addressCityOrRegionPC={addressCityOrRegionPC}
         />
+      </Grid>
 
+      <Grid container>
+        <Typography variant='h4' component='h3' className='mb-3'>Artículos Comprados</Typography>
         <Grid
           container
           className='flex-col gap-5 p-4 bg-white'
@@ -61,8 +61,8 @@ export const OrderDetailsPage = () => {
             })
           }
         </Grid>
-
       </Grid>
-    </PurchasesLayout>
+
+    </CheckoutStatusLayout>
   )
 }

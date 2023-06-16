@@ -1,81 +1,97 @@
-import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material'
+import { useMemo } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { useFormik } from 'formik'
+import { object, string } from 'yup'
+import { Alert, Grid, Link, TextField, Typography } from '@mui/material'
+import { startRegister } from '../../store/auth'
 import { AuthLayout } from '../layout/AuthLayout'
+import { InputPassword, InputLoding } from '../components'
+import { useClearMessage } from '../../hooks'
+
+const initialValues = {
+  name: '',
+  email: '',
+  password: ''
+}
+
+const validationSchema = object({
+  name: string()
+    .required('El nombre es requerido')
+    .matches(/^[\p{L}´¨()\-\s]+$/u, 'El nombre no es válido')
+    .min(1, 'El nombre tiene que tener al menos un carácter')
+    .max(50, 'El nombre no puede superar los 50 carácteres'),
+  email: string()
+    .required('El correo es requerido')
+    .email('El correo no es válido'),
+  password: string()
+    .required('La contraseña es requerida')
+    .min(6, 'Debe tener al menos 6 caracteres')
+})
 
 export const RegisterPage = () => {
-  const errorMessage = 'asdf'
-  const isCheckingAuthentication = false
-  const onSubmit = (e) => {
-    e.preventDefault()
+  const { status, errorMessage } = useSelector(state => state.auth)
+  const isCheckingAuthentication = useMemo(() => status === 'checking', [status])
+
+  const dispatch = useDispatch()
+
+  const createUser = (userData) => {
+    dispatch(startRegister(userData))
   }
 
-  const onInputChange = () => {
+  useClearMessage()
 
-  }
+  const { handleSubmit, handleChange, errors, values } = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: createUser
+  })
+
   return (
     <AuthLayout title='Crear cuenta'>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit}>
         <Grid container>
-          <Grid item xs={12} className='mt-4'>
+
+          <Grid container className='mt-4'>
             <TextField
-              name='displayName'
+              name='name'
               type='text'
               label='Nombre completo'
               placeholder='Nombre completo'
-              // value={displayName}
-              onChange={onInputChange}
+              value={values.name}
+              onChange={handleChange}
+              autoComplete='given-name'
               color='success'
-              inputProps={{
-                autoComplete: 'given-name'
-              }}
-              // error={!!displayNameValid && formSubmitted}
-              // helperText={displayNameValid}
+              error={!!errors.name}
+              helperText={errors.name}
               fullWidth
             />
           </Grid>
 
-          <Grid item xs={12} className='mt-4'>
+          <Grid container className='mt-4'>
             <TextField
+              name='email'
               label='Correo'
               type='email'
               placeholder='correo@google.com'
               fullWidth
-              name='email'
-              // value={email}
-              onChange={onInputChange}
+              value={values.email}
+              onChange={handleChange}
+              autoComplete='email'
               color='success'
-              inputProps={{
-                autoComplete: 'email'
-              }}
-              // error={!!emailValid && formSubmitted}
-              // helperText={emailValid}
+              error={!!errors.email}
+              helperText={errors.email}
             />
           </Grid>
 
-          <Grid item xs={12} className='mt-4'>
-            <TextField
-              label='Contraseña'
-              type='password'
-              placeholder='Debe tener al menos 6 caracteres"'
-              fullWidth
-              name='password'
-              // value={password}
-              onChange={onInputChange}
-              color='success'
-              inputProps={{
-                autoComplete: 'new-password'
-              }}
-              // error={!!passwordValid && formSubmitted}
-              // helperText={passwordValid}
-            />
-          </Grid>
+          <InputPassword onHandleChange={handleChange} value={values.password} error={errors.password} />
 
           <Grid container className='mb-4 mt-1'>
 
             <Grid
               item
               xs={12}
-              className={`${errorMessage ? '' : 'hidden'}`}
+              className={`${errorMessage ? '' : 'hidden'} mb-2`}
             >
               <Alert severity='error'>
                 {errorMessage}
@@ -83,16 +99,7 @@ export const RegisterPage = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <Button
-                disabled={isCheckingAuthentication}
-                type='submit'
-                variant='contained'
-                color='success'
-                className='bg-[#3483fa]'
-                fullWidth
-              >
-                Crear cuenta
-              </Button>
+              <InputLoding loading={isCheckingAuthentication} text='Crear Cuenta' />
             </Grid>
           </Grid>
 
@@ -104,7 +111,6 @@ export const RegisterPage = () => {
           </Grid>
         </Grid>
       </form>
-
     </AuthLayout>
   )
 }

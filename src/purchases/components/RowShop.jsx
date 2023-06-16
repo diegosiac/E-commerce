@@ -22,5 +22,5 @@ export const RowShop = ({ label, value, strong }) => {
 RowShop.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.number.isRequired,
-  strong: PropTypes.bool.isRequired
+  strong: PropTypes.bool
 }

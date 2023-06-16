@@ -1,26 +1,23 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { PrivateRoutes } from './PrivateRoutes'
 import { CartPage } from '../cart/pages'
-import { NavBar } from '../navbar/NavBar'
 import { HomePage } from '../home/pages'
 import { ProductPage } from '../product/pages'
-import { ProfilePage } from '../user/pages'
+import { NavBar } from '../navbar/NavBar'
 import { CategoriesRouter } from '../categories/router'
-import { PurchasesRouter } from '../purchases/router'
 
 export const PublicRouter = () => {
-  const login = true
+  const { status } = useSelector(state => state.auth)
+
   return (
     <>
       <NavBar />
-      <main>
+      <main className='flex justify-center'>
         <Routes>
           {
-            login &&
-              <Route path='profile/*' element={<ProfilePage />} />
-          }
-          {
-            login &&
-              <Route path='my_purchases/*' element={<PurchasesRouter />} />
+            status === 'authenticated' &&
+              <Route path='/*' element={<PrivateRoutes />} />
           }
           <Route path='/' element={<HomePage />} />
           <Route path='cart/*' element={<CartPage />} />

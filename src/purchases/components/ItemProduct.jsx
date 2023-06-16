@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
 
-export const ItemProduct = ({ title, urlImg, value }) => {
+export const ItemProduct = ({ title, urlImg, value, amount }) => {
   return (
     <Grid
       container
@@ -10,10 +10,8 @@ export const ItemProduct = ({ title, urlImg, value }) => {
       <img src={urlImg} alt={title} />
       <Box className='ml-5 pt-1'>
         <Typography className='text-base block' component='span'>{title}</Typography>
-        {
-          value &&
-            <Typography className='mt-5 text-sm block' component='span'>${value}</Typography>
-        }
+        <Typography className='my-2 text-sm block' component='span'>Cantidad: {amount}</Typography>
+        <Typography className='text-sm block' component='span'>${value}</Typography>
       </Box>
     </Grid>
   )
@@ -22,5 +20,6 @@ export const ItemProduct = ({ title, urlImg, value }) => {
 ItemProduct.proptypes = {
   title: PropTypes.string.isRequired,
   urlImg: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired
+  value: PropTypes.number.isRequired,
+  amount: PropTypes.number.isRequired
 }

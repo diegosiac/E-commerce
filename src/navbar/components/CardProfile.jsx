@@ -1,14 +1,11 @@
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Proptypes from 'prop-types'
 import { Avatar, Box, IconButton, Typography } from '@mui/material'
 import { Settings } from '@mui/icons-material'
 
-export const CardProfile = ({ setState }) => {
-  const userName = 'Diego Cruz'
-  const navigate = useNavigate()
+export const CardProfile = ({ setState, nameUser }) => {
   const onChangePage = () => {
     setState(false)
-    navigate('/profile', { replace: true })
   }
 
   return (
@@ -16,7 +13,7 @@ export const CardProfile = ({ setState }) => {
       <Box className='flex'>
         <Avatar
           className='bg-cyan-800 w-12 h-12'
-          alt={userName}
+          alt={nameUser}
           src='none'
         />
         <Typography
@@ -24,10 +21,10 @@ export const CardProfile = ({ setState }) => {
           component='span'
           className='ml-3'
         >
-          Bienvenido {userName}
+          Bienvenido {nameUser}
         </Typography>
       </Box>
-      <IconButton onClick={onChangePage}>
+      <IconButton onClick={onChangePage} LinkComponent={Link} to='/profile'>
         <Settings className='text-3xl' />
       </IconButton>
     </Box>
@@ -35,5 +32,6 @@ export const CardProfile = ({ setState }) => {
 }
 
 CardProfile.proptypes = {
-  setState: Proptypes.func.isRequired
+  setState: Proptypes.func.isRequired,
+  nameUser: Proptypes.string.isRequired
 }

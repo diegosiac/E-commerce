@@ -1,16 +1,15 @@
+import { useAuthStore } from '../../hooks'
 import { UserIcon } from './'
 
 export const AcountUser = () => {
-  const userName = 'Diego'
-  const login = true
-
+  const { user, status } = useAuthStore()
   return (
     <>
       {
-        login
-          ? <UserIcon userName={userName} to='/profile' />
+        status === 'authenticated'
+          ? <UserIcon userName={user.name} to='/profile' />
           : <UserIcon userName='Inicar Sesion' to='/auth' />
-    }
+      }
     </>
   )
 }
