@@ -1,26 +1,19 @@
-import { Box, Button, Container, Grid, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { Box, Button, Container, Grid, Typography } from '@mui/material'
 
-export const ItemProduct = ({ name, urlImg, price, stock }) => {
-  const [onChange, setOnChange] = useState(1)
-
-  const onInputChange = (e) => {
-    const value = Number(e.target.value)
-    if (Number.isInteger(value)) {
-      setOnChange(value)
-      console.log(value > 0)
-    }
+export const ItemProduct = ({ index, name, thumbnail, price, stock, quantity, updateQuantityProducts, deleteProductItem }) => {
+  const msgStock = stock === 1 ? 'Último disponible' : `${stock} disponibles`
+  const handleDecrease = () => {
+    updateQuantityProducts({ index, value: quantity - 1 })
   }
 
   const handleIncrease = () => {
-    setOnChange(onChange + 1)
-  }
-  const handleDecrease = () => {
-    setOnChange(onChange - 1)
+    updateQuantityProducts({ index, value: quantity + 1 })
   }
 
-  const msgStock = stock === 1 ? 'Último disponible' : `${stock} disponibles`
+  const handleProductItem = () => {
+    deleteProductItem({ index })
+  }
 
   return (
     <Container
@@ -31,7 +24,7 @@ export const ItemProduct = ({ name, urlImg, price, stock }) => {
         component='article'
         className='flex pb-5 w-full lg:w-max mr-16'
       >
-        <img src={urlImg} alt={name} className='h-16' />
+        <img src={thumbnail} alt={name} className='h-16' />
         <Grid item className='flex justify-between flex-col items-start ml-2'>
           <Typography
             variant='h4'
@@ -44,6 +37,7 @@ export const ItemProduct = ({ name, urlImg, price, stock }) => {
             type='submit'
             color='success'
             className='p-0'
+            onClick={handleProductItem}
           >
             Eliminar
           </Button>
@@ -53,35 +47,34 @@ export const ItemProduct = ({ name, urlImg, price, stock }) => {
 
       <Box className='flex flex-col'>
 
-        <Grid className='flex border-[1px] w-min'>
+        <Grid className='flex border-[1px] w-min' component='form'>
           <Button
             onClick={handleDecrease}
             className='min-w-[35px] text-[#3483fa] text-lg'
-            disabled={onChange <= 1}
+            disabled={quantity <= 1}
           >-
           </Button>
-          <input
-            maxLength='250'
-            value={onChange}
-            onChange={onInputChange}
-            className='w-11 p-0 text-center outline-none'
-          />
+          <span
+            className='flex items-center justify-center w-11'
+          >
+            {quantity}
+          </span>
           <Button
             onClick={handleIncrease}
             className='min-w-[35px] text-[#3483fa] text-lg'
-            disabled={onChange >= stock}
+            disabled={quantity >= stock}
           >+
           </Button>
         </Grid>
 
         <Typography
           component='span'
-          className={`whitespace-nowrap text-center text-[#999] mt-2 ${onChange === 0 || onChange > stock ? 'text-[#f23d4f]' : ''}`}
+          className={`whitespace-nowrap text-center text-[#999] mt-2 ${quantity === 0 || quantity > stock ? 'text-[#f23d4f]' : ''}`}
         >
           {
-            onChange === 0
+            quantity === 0
               ? 'Puedes comprar desde 1 u'
-              : onChange > stock
+              : quantity > stock
                 ? `Puedes comprar hasta ${stock} u.`
                 : msgStock
           }
@@ -101,8 +94,12 @@ export const ItemProduct = ({ name, urlImg, price, stock }) => {
 }
 
 ItemProduct.propTypes = {
+  index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  urlImg: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  quantity: PropTypes.number.isRequired,
+  updateQuantityProducts: PropTypes.func.isRequired,
+  deleteProductItem: PropTypes.func.isRequired,
   stock: PropTypes.number.isRequired
 }

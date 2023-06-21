@@ -1,5 +1,6 @@
 import ecommerceApi from '../../api/ecommerceApi'
 import { clearErrorMessage, onChecking, onLogin, onLogout } from './'
+import { updateBasket } from '../cart/cartSlice'
 
 export const checkingAuthentication = () => {
   return async (dispatch) => {
@@ -10,7 +11,8 @@ export const checkingAuthentication = () => {
       const { data } = await ecommerceApi.get('auth/renew')
       const { token, name, email, basket } = data.user
       localStorage.setItem('token', token)
-      dispatch(onLogin({ name, email, basket }))
+      dispatch(updateBasket(basket))
+      dispatch(onLogin({ name, email }))
     } catch (error) {
       localStorage.clear()
       dispatch(onLogout())
@@ -27,7 +29,8 @@ export const startRegister = (userData) => {
       const { token, name, email, basket } = data.user
 
       localStorage.setItem('token', token)
-      dispatch(onLogin({ name, email, basket }))
+      dispatch(updateBasket(basket))
+      dispatch(onLogin({ name, email }))
     } catch (error) {
       const typeError = error.response.data.msg
       if (typeError) {
@@ -49,17 +52,18 @@ export const startLogin = (userData) => {
     dispatch(onChecking())
 
     try {
-      const { data } = await ecommerceApi.post('/auth', userData)
+      const { data } = await ecommerceApi.post('auth', userData)
       const { token, name, email, basket } = data.user
 
       localStorage.setItem('token', token)
-      dispatch(onLogin({ name, email, basket }))
+      dispatch(updateBasket(basket))
+      dispatch(onLogin({ name, email }))
     } catch (error) {
       dispatch(onLogout('El correo o la contraseña son incorrectas'))
       setTimeout(() => {
         dispatch(clearErrorMessage())
       }, 3000)
-    };
+    }
   }
 }
 

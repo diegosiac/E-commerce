@@ -8,7 +8,7 @@ export const PriceBox = ({ products }) => {
   let totalPrice = 0
 
   products.forEach((product) => {
-    totalPrice += product.price
+    totalPrice += product.price * product.quantity
   })
 
   return (
