@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { Avatar, Box, Button, Grid, Typography } from '@mui/material'
+import IosShareIcon from '@mui/icons-material/IosShare'
 import { useAuthStore } from '../../hooks'
 import { startLogout } from '../../store/auth'
 import { SectionItems, SectionProfile } from '../components'
@@ -49,10 +50,13 @@ export const ProfilePage = () => {
 
           <SectionProfile title='Mis Compras'>
             <Button
+              startIcon={<IosShareIcon className='text-neutral-600' />}
               variant='text'
               fullWidth
-              className='flex justify-start'
+              className='flex justify-start items-center'
               LinkComponent={Link}
+              aria-label='IR A MIS COMPRAS'
+              title='IR A MIS COMPRAS'
               to='/my_purchases'
             >
               IR A MIS COMPRAS
@@ -63,6 +67,7 @@ export const ProfilePage = () => {
             variant='contained'
             className='flex justify-start mt-12 bg-[#f44336]'
             color='error'
+            aria-label='Cerrar Sesión'
             onClick={handleLogout}
           >
             Cerrar Sesión

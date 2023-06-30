@@ -1,8 +1,14 @@
 import PropTypes from 'prop-types'
 import { Box, Grid, Typography } from '@mui/material'
+import { getDayTranform, STATUSDELIVERY } from '../../helpers'
 import { ItemProduct, TitleInfo } from './'
 
 export const ItemPurchases = ({ id, value, dateShop, products, deliveryDay }) => {
+  const dateShopDay = getDayTranform(dateShop)
+  const dateDeliveryDay = getDayTranform(deliveryDay.date)
+
+  const isCompleteDelivery = deliveryDay.status === STATUSDELIVERY.COMPLETE ? 'Se entrego el' : 'Fecha estimada de entrega'
+
   return (
     <Grid
       container
@@ -15,7 +21,7 @@ export const ItemPurchases = ({ id, value, dateShop, products, deliveryDay }) =>
         className='justify-between p-3 border-b border-solid flex-nowrap whitespace-nowrap'
       >
         <Box className='flex gap-5'>
-          <TitleInfo title='PEDIDO REALIZADO' value={dateShop} />
+          <TitleInfo title='PEDIDO REALIZADO' value={dateShopDay} />
           <TitleInfo title='TOTAL' value={`$${value}`} />
         </Box>
 
@@ -24,7 +30,7 @@ export const ItemPurchases = ({ id, value, dateShop, products, deliveryDay }) =>
             title={`PEDIDO N.º ${id}`}
             value='Ver detalles del pedido'
             link
-            to='order-details'
+            to={`order-details?id=${id}&list=5`}
           />
         </Box>
       </Grid>
@@ -34,7 +40,7 @@ export const ItemPurchases = ({ id, value, dateShop, products, deliveryDay }) =>
         component='span'
         className='pt-3 pl-3'
       >
-        {deliveryDay}
+        {`${isCompleteDelivery} ${dateDeliveryDay}`}
       </Typography>
 
       <Grid
@@ -42,12 +48,11 @@ export const ItemPurchases = ({ id, value, dateShop, products, deliveryDay }) =>
         className='px-3 mt-3 flex-col gap-2'
       >
         {
-          products.map(({ urlImg, title }) => {
+          products.map(({ id, ...props }) => {
             return (
               <ItemProduct
-                key={title}
-                title={title}
-                urlImg={urlImg}
+                key={id}
+                {...props}
               />
             )
           })

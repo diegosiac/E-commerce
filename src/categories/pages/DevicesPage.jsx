@@ -1,5 +1,6 @@
 import { CategoriesLayout } from '../layout/CategoriesLayout'
 import { CardProduct } from '../../product/components'
+import devicesDigital from '../../assets/imgs/backgrounds/devicesDigital.webp'
 
 export const DevicesPage = () => {
   return (
@@ -13,7 +14,7 @@ export const DevicesPage = () => {
       descriptionSecondary='Nos comprometemos a ofrecer dispositivos de la más alta calidad que cumplen y superan los estándares de la industria.'
       descriptionThird='Entendemos que cada cliente tiene necesidades y preferencias únicas. Por eso, ofrecemos una amplia gama de dispositivos'
       descriptionFourth='Nos comprometemos a brindar un excelente servicio al cliente en cada etapa del proceso.'
-      urlSecondary='../../assets/imgs/backgrounds/devicesDigital.png'
+      urlSecondary={devicesDigital}
     >
       <CardProduct />
       <CardProduct />

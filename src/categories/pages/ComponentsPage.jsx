@@ -1,6 +1,6 @@
-
 import { CategoriesLayout } from '../layout/CategoriesLayout'
 import { CardProduct } from '../../product/components'
+import phoneConfig from '../../assets/imgs/backgrounds/phoneConfig.webp'
 
 export const ComponentsPage = () => {
   return (
@@ -14,7 +14,7 @@ export const ComponentsPage = () => {
       descriptionSecondary='Entendemos que cada cliente tiene necesidades específicas. Por eso, ofrecemos una amplia gama de componentes para adaptarnos a diversas aplicaciones.'
       descriptionThird='Nuestro compromiso con la satisfacción del cliente es fundamental.'
       descriptionFourth='Contamos con una sólida experiencia y una reputación establecida en la industria de componentes.'
-      urlSecondary='../../assets/imgs/backgrounds/phoneConfig.png'
+      urlSecondary={phoneConfig}
     >
       <CardProduct />
       <CardProduct />

@@ -8,8 +8,8 @@ import { setBasket } from '../../store/cart'
 export const Cart = ({ products }) => {
   const dispatch = useDispatch()
 
-  const updateQuantityProducts = ({ index, value }) => {
-    const newProducts = products.map((product, i) => {
+  const updateQuantityProducts = async ({ index, value, id }) => {
+    const newBasket = products.map((product, i) => {
       if (i === index) {
         return {
           ...product,
@@ -19,13 +19,13 @@ export const Cart = ({ products }) => {
       return product
     })
 
-    dispatch(setBasket(newProducts))
+    dispatch(setBasket({ newBasket, id }))
   }
 
-  const deleteProductItem = ({ index }) => {
-    const newProducts = products.filter((_, i) => i !== index)
+  const deleteProductItem = ({ index, id }) => {
+    const newBasket = products.filter((_, i) => i !== index)
 
-    dispatch(setBasket(newProducts))
+    dispatch(setBasket({ newBasket, id }))
   }
 
   return (
@@ -38,6 +38,7 @@ export const Cart = ({ products }) => {
           products.map(({ id, ...product }, index) => (
             <ItemProduct
               key={id}
+              id={id}
               index={index}
               updateQuantityProducts={updateQuantityProducts}
               deleteProductItem={deleteProductItem}

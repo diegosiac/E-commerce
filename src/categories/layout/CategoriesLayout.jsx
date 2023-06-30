@@ -1,6 +1,7 @@
 import { Box, Grid, Typography } from '@mui/material'
 import Proptypes from 'prop-types'
 import { CardContend } from '../components/CardContend'
+import hardware from '../../assets/imgs/backgrounds/hardware.webp'
 
 export const CategoriesLayout = (
   {
@@ -46,7 +47,7 @@ export const CategoriesLayout = (
 
         <CardContend
           classImg='object-cover h-[200px]'
-          urlImg='../../assets/imgs/backgrounds/hardware.png'
+          urlImg={hardware}
           title={titlePrimary}
           description={descriptionPrimary}
           className='col-span-2 md:row-span-2'

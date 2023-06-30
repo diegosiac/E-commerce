@@ -1,6 +1,6 @@
 import { Link as RouterLink } from 'react-router-dom'
 import { Grid, Link } from '@mui/material'
-import second from '../../assets/imgs/logos/logoP.png'
+import second from '../../assets/imgs/logos/logoP.webp'
 
 export const NavBar = () => {
   return (

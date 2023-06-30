@@ -8,6 +8,7 @@ export const InputLoding = ({ loading, text }) => {
       variant='contained'
       color='success'
       className='bg-[#3483fa]'
+      aria-label={text}
       fullWidth
       disabled={loading}
     >

@@ -4,15 +4,14 @@ import { Cart, PriceBox } from '../components'
 
 export const CartPage = () => {
   const { basket } = useCartStore()
-  const products = basket?.products || []
   return (
     <Grid container component='div' className='justify-center my-10'>
 
       <Grid item className='flex gap-4 md:flex-nowrap flex-wrap w-11/12'>
-        <Cart products={products} />
+        <Cart products={basket} />
         {
-          products.length !== 0 &&
-            <PriceBox products={products} />
+          basket.length !== 0 &&
+            <PriceBox products={basket} />
         }
       </Grid>
 

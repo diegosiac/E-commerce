@@ -1,16 +1,17 @@
-import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Proptypes from 'prop-types'
 import { Avatar, Box, IconButton, Typography } from '@mui/material'
 
-export const UserIcon = ({ userName, to }) => {
-  const navigate = useNavigate()
-  const onChangePage = () => navigate(to, { replace: true })
+export const UserIcon = ({ userName, to, label }) => {
   return (
     <Box className='hidden md:block'>
       <IconButton
         color='success'
-        onClick={onChangePage}
         className='flex flex-col mr-2'
+        LinkComponent={Link}
+        to={to}
+        title={label}
+        aria-label={label}
       >
         <Avatar
           className='bg-[#3483fa] w-8 h-8'
@@ -30,5 +31,6 @@ export const UserIcon = ({ userName, to }) => {
 
 UserIcon.proptypes = {
   userName: Proptypes.string.isRequired,
-  to: Proptypes.string.isRequired
+  to: Proptypes.string.isRequired,
+  label: Proptypes.string
 }

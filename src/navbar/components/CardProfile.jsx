@@ -3,11 +3,7 @@ import Proptypes from 'prop-types'
 import { Avatar, Box, IconButton, Typography } from '@mui/material'
 import { Settings } from '@mui/icons-material'
 
-export const CardProfile = ({ setState, nameUser }) => {
-  const onChangePage = () => {
-    setState(false)
-  }
-
+export const CardProfile = ({ toggleDrawer, nameUser }) => {
   return (
     <Box className='flex justify-between pl-4 absolute bottom-5 w-5/6 ml-4'>
       <Box className='flex'>
@@ -24,7 +20,12 @@ export const CardProfile = ({ setState, nameUser }) => {
           Bienvenido {nameUser}
         </Typography>
       </Box>
-      <IconButton onClick={onChangePage} LinkComponent={Link} to='/profile'>
+      <IconButton
+        onClick={toggleDrawer()}
+        LinkComponent={Link}
+        to='/profile'
+        aria-label={`Ir a su perfil, ${nameUser}`}
+      >
         <Settings className='text-3xl' />
       </IconButton>
     </Box>
@@ -32,6 +33,6 @@ export const CardProfile = ({ setState, nameUser }) => {
 }
 
 CardProfile.proptypes = {
-  setState: Proptypes.func.isRequired,
+  toggleDrawer: Proptypes.func.isRequired,
   nameUser: Proptypes.string.isRequired
 }

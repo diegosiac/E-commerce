@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types'
 import { Box, Typography } from '@mui/material'
 
-export const RowShop = ({ label, value, strong }) => {
+export const RowShop = ({ label, value, strong, colorValue }) => {
+  const valueColor = colorValue ? `text-[${colorValue}]` : ''
+
   return (
     <Box className='flex'>
       <Typography
@@ -11,9 +13,9 @@ export const RowShop = ({ label, value, strong }) => {
       </Typography>
 
       <Typography
-        className={`w-[20.448%] text-right ${strong ? 'font-bold' : ''}`}
+        className={`w-[20.448%] text-right ${strong ? 'font-bold' : ''} ${valueColor}`}
         component='span'
-      >${value}
+      >{value}
       </Typography>
     </Box>
   )
@@ -21,6 +23,10 @@ export const RowShop = ({ label, value, strong }) => {
 
 RowShop.propTypes = {
   label: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-  strong: PropTypes.bool
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]).isRequired,
+  strong: PropTypes.bool,
+  colorValue: PropTypes.string
 }

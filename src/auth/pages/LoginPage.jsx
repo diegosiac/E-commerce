@@ -55,6 +55,7 @@ export const LoginPage = () => {
               onChange={handleChange}
               color='success'
               autoComplete='email'
+              aria-label='Ingresa tu correo'
               fullWidth
             />
           </Grid>
@@ -79,7 +80,13 @@ export const LoginPage = () => {
 
           <Grid container direction='row' justifyContent='end'>
             <Typography className='mr-2'>¿Eres nuevo en GEEK MOBILE?</Typography>
-            <Link component={RouterLink} color='inherit' to='/auth/register'>
+            <Link
+              component={RouterLink}
+              color='inherit'
+              to='/auth/register'
+              title='Ir a Registrarse'
+              aria-label='Ir a Registrarse'
+            >
               Crear una cuenta
             </Link>
           </Grid>

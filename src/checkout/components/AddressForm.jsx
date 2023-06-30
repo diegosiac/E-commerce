@@ -63,6 +63,7 @@ export const AddressForm = ({ handleNext }) => {
                 required
                 label='País o región'
                 variant='standard'
+                aria-label='Elige tu País o región'
                 inputProps={{
                   ...params.inputProps,
                   autoComplete: 'new-password'
@@ -113,6 +114,7 @@ export const AddressForm = ({ handleNext }) => {
           onClick={handleNext}
           color='success'
           className='bg-[#3483fa]'
+          aria-label='Siguiente Paso'
         >
           Siguiente
         </Button>

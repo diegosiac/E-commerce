@@ -49,6 +49,7 @@ export const Footer = () => {
             className='px-1'
             target='_blank'
             rel='noopener noreferrer'
+            title='Ir a Instagram geek mobile'
           >
             <Instagram className='text-4xl hover:text-[#f00075]' />
           </Link>
@@ -58,6 +59,7 @@ export const Footer = () => {
             className='px-1'
             target='_blank'
             rel='noopener noreferrer'
+            title='Ir a Facebook geek mobile'
           >
             <Facebook className='text-4xl hover:text-[#1877f2]' />
           </Link>
@@ -67,6 +69,7 @@ export const Footer = () => {
             className='px-1'
             target='_blank'
             rel='noopener noreferrer'
+            title='Ir a Tiktok geek mobile'
           >
             <TikTok className='text-4xl hover:text-[#00f2eb]' />
           </Link>

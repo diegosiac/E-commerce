@@ -9,8 +9,8 @@ export const HomePage = () => {
     >
       <Box className='m-5 md:m-7 w-11/12 h-72'>
         <img
-          src='../../assets/imgs/logos/presentation.jpg'
-          alt='Presentación Geek Mobile Repair'
+          src='../../assets/imgs/logos/presentation.webp'
+          alt='Imagen con prioridad alta'
           className='w-full h-full object-cover'
         />
       </Box>

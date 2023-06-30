@@ -1,21 +1,19 @@
-import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import { Button, Container, Grid } from '@mui/material'
 import { CartLayout } from '../layout/CartLayout'
 import { Prices } from './Prices'
 
 export const PriceBox = ({ products }) => {
-  let totalPrice = 0
+  const totalPrice = products.reduce((accum, product) => accum + (product.price * product.quantity), 0)
 
-  products.forEach((product) => {
-    totalPrice += product.price * product.quantity
-  })
+  const totalProducts = products.reduce((accum, product) => accum + product.quantity, 0)
 
   return (
     <CartLayout title='Resumen de compra' className='w-80 self-start px-7 pb-7'>
       <Grid container>
         <Prices
-          title={`Productos (${products.length})`}
+          title={`Productos (${totalProducts})`}
           value={`$ ${totalPrice}`}
           classTitle='text-sm'
           classValue='text-sm'
@@ -39,6 +37,8 @@ export const PriceBox = ({ products }) => {
             color='success'
             className='bg-[#3483fa] w-full'
             LinkComponent={Link}
+            aria-label='Continuar compra'
+            title='Continuar compra'
             to='/checkout'
           >
             Continuar compra

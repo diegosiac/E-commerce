@@ -1,6 +1,7 @@
 import { Link as RouterLink } from 'react-router-dom'
 import Proptypes from 'prop-types'
 import { Card, CardActionArea, CardContent, CardMedia, Divider, Typography } from '@mui/material'
+import placaBase from '../../assets/imgs/placaBase.jpg'
 
 export const CardProduct = ({ title, urlProduct, value, id }) => {
   return (
@@ -8,6 +9,7 @@ export const CardProduct = ({ title, urlProduct, value, id }) => {
       <CardActionArea
         LinkComponent={RouterLink}
         to={`/product/${title}?id=${id}`}
+        title={`Ir a ${title}`}
       >
         <CardMedia
           component='img'
@@ -44,7 +46,7 @@ CardProduct.proptypes = {
 
 CardProduct.defaultProps = {
   title: 'Dpofirs Placa Madre de Telefono Movil para G950U,Ecológico Celular Placa Base',
-  urlProduct: '../../assets/imgs/placaBase.jpg',
+  urlProduct: placaBase,
   value: 148,
   id: 'f293h92'
 }

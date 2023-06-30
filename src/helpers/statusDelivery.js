@@ -1,0 +1,4 @@
+export const STATUSDELIVERY = {
+  COMPLETE: 'COMPLETE',
+  PROGRESS: 'PROGRESS'
+}

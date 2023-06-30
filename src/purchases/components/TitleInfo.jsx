@@ -18,16 +18,18 @@ export const TitleInfo = ({ title, value, link, to }) => {
               component={routerLink}
               to={to}
               className='text-[#007185] no-underline hover:underline hover:text-[#C7511F]'
+              title='Ver detalles del pedido'
+              aria-label='Ver detalles del pedido'
             >
             {value}
-          </Link>
+            </Link>
           : <Typography
               variant='subtitle2'
               component='span'
               className='text-[#565959]'
             >
             {value}
-          </Typography>
+            </Typography>
       }
     </Box>
   )

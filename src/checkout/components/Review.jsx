@@ -71,6 +71,7 @@ export const Review = ({ handleBack }) => {
           onClick={handleBack}
           color='success'
           className='bg-[#3483fa]'
+          aria-label='Volver Atras'
         >
           Atras
         </Button>
@@ -79,6 +80,7 @@ export const Review = ({ handleBack }) => {
           className='bg-[#f2ba36] text-black'
           color='warning'
           startIcon={<Paypal />}
+          aria-label='Pagar Con Paypal'
         >
           Pagar Con Paypal
         </Button>

@@ -1,5 +1,5 @@
-import { Container, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
+import { Container, Typography } from '@mui/material'
 
 export const Prices = ({ title, value, classTitle, classValue }) => {
   return (

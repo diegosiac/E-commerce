@@ -3,9 +3,11 @@ import { ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/mater
 import PropTypes from 'prop-types'
 
 export const ItemsLinks = ({ title, icon, to }) => {
+  const label = `Ir a ${title}`
+
   return (
     <ListItem>
-      <ListItemButton LinkComponent={Link} to={to}>
+      <ListItemButton LinkComponent={Link} to={to} title={label} aria-label={label}>
         <ListItemIcon sx={{ color: 'primary.main' }}>
           {icon}
         </ListItemIcon>

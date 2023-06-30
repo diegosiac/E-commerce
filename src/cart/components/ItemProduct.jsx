@@ -1,19 +1,26 @@
 import PropTypes from 'prop-types'
-import { Box, Button, Container, Grid, Typography } from '@mui/material'
+import { Box, Button, CircularProgress, Container, Grid, Typography } from '@mui/material'
+import { useCartStore } from '../../hooks'
+import { STATUS } from '../../store/cart'
 
-export const ItemProduct = ({ index, name, thumbnail, price, stock, quantity, updateQuantityProducts, deleteProductItem }) => {
+export const ItemProduct = ({ id, index, name, thumbnail, price, stock, quantity, updateQuantityProducts, deleteProductItem }) => {
   const msgStock = stock === 1 ? 'Último disponible' : `${stock} disponibles`
   const handleDecrease = () => {
-    updateQuantityProducts({ index, value: quantity - 1 })
+    updateQuantityProducts({ index, value: quantity - 1, id })
   }
 
   const handleIncrease = () => {
-    updateQuantityProducts({ index, value: quantity + 1 })
+    updateQuantityProducts({ index, value: quantity + 1, id })
   }
 
   const handleProductItem = () => {
-    deleteProductItem({ index })
+    deleteProductItem({ index, id })
   }
+
+  const { status, idCheking } = useCartStore()
+
+  const isStatusChecking = status === STATUS.CHECKING
+  const isUpdateItem = isStatusChecking && id === idCheking
 
   return (
     <Container
@@ -38,6 +45,9 @@ export const ItemProduct = ({ index, name, thumbnail, price, stock, quantity, up
             color='success'
             className='p-0'
             onClick={handleProductItem}
+            disabled={isStatusChecking}
+            title='Eliminar'
+            aria-label='Eliminar'
           >
             Eliminar
           </Button>
@@ -51,18 +61,27 @@ export const ItemProduct = ({ index, name, thumbnail, price, stock, quantity, up
           <Button
             onClick={handleDecrease}
             className='min-w-[35px] text-[#3483fa] text-lg'
-            disabled={quantity <= 1}
+            disabled={quantity <= 1 || isStatusChecking}
+            arial-label='Agregar una unidad'
           >-
           </Button>
           <span
-            className='flex items-center justify-center w-11'
+            className='flex items-center justify-center w-11 relative'
           >
             {quantity}
+            {
+              isUpdateItem &&
+                <CircularProgress
+                  className='text-[#3483fa] absolute'
+                  style={{ width: 30, height: 30 }}
+                />
+            }
           </span>
           <Button
             onClick={handleIncrease}
             className='min-w-[35px] text-[#3483fa] text-lg'
-            disabled={quantity >= stock}
+            disabled={quantity >= stock || isStatusChecking}
+            arial-label='Quitar una unidad'
           >+
           </Button>
         </Grid>
@@ -94,12 +113,13 @@ export const ItemProduct = ({ index, name, thumbnail, price, stock, quantity, up
 }
 
 ItemProduct.propTypes = {
+  id: PropTypes.string.isRequired,
   index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
+  stock: PropTypes.number.isRequired,
   updateQuantityProducts: PropTypes.func.isRequired,
-  deleteProductItem: PropTypes.func.isRequired,
-  stock: PropTypes.number.isRequired
+  deleteProductItem: PropTypes.func.isRequired
 }

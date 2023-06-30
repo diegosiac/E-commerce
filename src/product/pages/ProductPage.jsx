@@ -20,7 +20,7 @@ export const ProductPage = () => {
         <Box
           className='mt-2'
         >
-          <IconButton LinkComponent={Link} to='/'>
+          <IconButton LinkComponent={Link} to='/' aria-label='Volver'>
             <ArrowBack fontSize='medium' />
           </IconButton>
         </Box>
@@ -56,6 +56,7 @@ export const ProductPage = () => {
               size='large'
               color='success'
               className='font-bold bg-[#3483fa] mt-4'
+              aria-label='Agregar el carrito'
               fullWidth
             >
               AGREGAR AL CARRITO

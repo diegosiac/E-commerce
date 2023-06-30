@@ -10,13 +10,17 @@ export const Search = () => {
       <InputBase
         placeholder='Busca reparaciones y mas..'
         className='ml-2 flex-grow'
+        aria-label='Ingresa lo que quieras encontrar'
+        inputProps={{
+          'aria-label': 'Ingresa lo que quieras encontrar'
+        }}
       />
 
       <Divider className='h-7' orientation='vertical' />
 
       <IconButton
         type='button'
-        className=''
+        title='Buscar'
       >
         <SearchIcon />
       </IconButton>

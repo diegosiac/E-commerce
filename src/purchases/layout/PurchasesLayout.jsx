@@ -8,7 +8,7 @@ export const PurchasesLayout = ({ children, title }) => {
       className='justify-center'
     >
       <Grid
-        className='w-11/12 my-8'
+        className='w-11/12 mt-4 mb-8'
       >
         <Typography
           variant='subtitle1'

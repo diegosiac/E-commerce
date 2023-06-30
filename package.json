@@ -30,6 +30,7 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.14",
+    "babel-plugin-direct-import": "^1.0.0",
     "dotenv": "^16.0.3",
     "postcss": "^8.4.24",
     "standard": "^17.0.0",

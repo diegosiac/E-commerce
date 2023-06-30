@@ -7,8 +7,8 @@ export const AcountUser = () => {
     <>
       {
         status === 'authenticated'
-          ? <UserIcon userName={user.name} to='/profile' />
-          : <UserIcon userName='Inicar Sesion' to='/auth' />
+          ? <UserIcon userName={user.name} to='/profile' label='Ir a su perfil' />
+          : <UserIcon userName='Inicar Sesion' to='/auth' label='Iniciar sesión' />
       }
     </>
   )

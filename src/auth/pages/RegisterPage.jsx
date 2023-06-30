@@ -58,6 +58,7 @@ export const RegisterPage = () => {
               type='text'
               label='Nombre completo'
               placeholder='Nombre completo'
+              aria-label='Ingresa tu nombre'
               value={values.name}
               onChange={handleChange}
               autoComplete='given-name'
@@ -73,6 +74,7 @@ export const RegisterPage = () => {
               name='email'
               label='Correo'
               type='email'
+              aria-label='Ingresa tu correo'
               placeholder='correo@google.com'
               fullWidth
               value={values.email}
@@ -105,7 +107,12 @@ export const RegisterPage = () => {
 
           <Grid container className='flex flex-row justify-end'>
             <Typography className='mr-2'>¿Ya tienes cuenta?</Typography>
-            <Link component={RouterLink} color='inherit' to='/auth/login'>
+            <Link
+              component={RouterLink}
+              color='inherit'
+              to='/auth/login'
+              aria-label='Ir a Iniciar tu Sesión'
+            >
               Ingresar
             </Link>
           </Grid>

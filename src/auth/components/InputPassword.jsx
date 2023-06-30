@@ -22,11 +22,12 @@ export const InputPassword = ({ onHandleChange, value, error }) => {
         type={showPassword ? 'text' : 'password'}
         autoComplete='current-password'
         onChange={onHandleChange}
+        aria-label='Ingresa tu contraseña'
         value={value}
         endAdornment={
           <InputAdornment position='end'>
             <IconButton
-              aria-label='toggle password visibility'
+              aria-label='Contraseña Visible'
               onClick={handleClickShowPassword}
               edge='end'
             >

@@ -8,39 +8,42 @@ export const MenuHam = () => {
   const { user, status } = useAuthStore()
   const [open, setState] = useState(false)
 
-  const toggleDrawer = (open) => () => setState(open)
+  const toggleDrawer = () => () => setState(!open)
 
   return (
     <div className='md:hidden'>
       <IconButton
-        className='text-white p-0'
-        onClick={toggleDrawer(true)}
+        className='text-white p-0 z-20'
+        onClick={toggleDrawer()}
+        aria-label='Menú de usuario'
+        aria-expanded={open}
       >
-        <Menu fontSize='large' />
+        {
+          open
+            ? <Close className='text-[#000]' fontSize='large' />
+            : <Menu fontSize='large' />
+        }
       </IconButton>
 
       <Drawer
         anchor='left'
         open={open}
-        onClose={toggleDrawer(false)}
+        onClose={toggleDrawer()}
         PaperProps={{ className: 'w-full' }}
+        className='z-10'
       >
         <Box
-          className='p-3 h-full'
+          className='pt-14 px-3 h-full'
           bgcolor='white'
           role='presentation'
         >
-          <IconButton className='ml-3 mb-2' onClick={toggleDrawer(false)}>
-            <Close fontSize='large' />
-          </IconButton>
 
           <Divider className='mb-2' />
 
           <Box
             className='mb-2'
-            onClick={toggleDrawer(false)}
+            onClick={toggleDrawer()}
           >
-
             <List>
 
               <ItemsLinks
@@ -69,8 +72,8 @@ export const MenuHam = () => {
 
           {
             status === 'authenticated'
-              ? <CardProfile setState={setState} nameUser={user.name} />
-              : <LoginSection setState={setState} />
+              ? <CardProfile toggleDrawer={toggleDrawer} nameUser={user.name} />
+              : <LoginSection toggleDrawer={toggleDrawer} />
           }
 
         </Box>
