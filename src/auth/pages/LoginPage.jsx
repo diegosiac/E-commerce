@@ -1,13 +1,13 @@
 import { useMemo } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
 import { object, string } from 'yup'
 import { Alert, Grid, Link, TextField, Typography } from '@mui/material'
 import { startLogin } from '../../store/auth'
 import { AuthLayout } from '../layout/AuthLayout'
 import { InputLoding, InputPassword } from '../components'
-import { useClearMessage } from '../../hooks'
+import { useAuthStore, useClearMessage } from '../../hooks'
 
 const initialValues = {
   email: '',
@@ -24,7 +24,7 @@ const validationSchema = object({
 })
 
 export const LoginPage = () => {
-  const { status, errorMessage } = useSelector(state => state.auth)
+  const { status, errorMessage } = useAuthStore()
   const isCheckingAuthentication = useMemo(() => status === 'checking', [status])
 
   const dispatch = useDispatch()
@@ -74,7 +74,7 @@ export const LoginPage = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <InputLoding loading={isCheckingAuthentication} text='Iniciar Sesión' />
+              <InputLoding loading={isCheckingAuthentication} text='Iniciar Sesión' type='submit' />
             </Grid>
           </Grid>
 

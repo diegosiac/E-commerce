@@ -7,6 +7,7 @@ export const CategoriesLayout = (
   {
     children,
     title,
+    disableGrid,
     urlSecondary,
     titlePrimary,
     titleSecondary,
@@ -41,37 +42,41 @@ export const CategoriesLayout = (
 
       </Grid>
 
-      <Box
-        className='grid grid-cols-2 gap-4 w-11/12 md:grid-cols-4'
-      >
+      {
+        !disableGrid &&
+          <Box
+            className='grid grid-cols-2 gap-4 w-11/12 md:grid-cols-4'
+          >
 
-        <CardContend
-          classImg='object-cover h-[200px]'
-          urlImg={hardware}
-          title={titlePrimary}
-          description={descriptionPrimary}
-          className='col-span-2 md:row-span-2'
-        />
+            <CardContend
+              classImg='object-cover h-[200px]'
+              urlImg={hardware}
+              title={titlePrimary}
+              description={descriptionPrimary}
+              className='col-span-2 md:row-span-2'
+            />
 
-        <CardContend
-          classImg='object-contain w-32'
-          urlImg={urlSecondary}
-          title={titleSecondary}
-          description={descriptionSecondary}
-          className='flex col-span-2'
-        />
+            <CardContend
+              classImg='object-contain w-32'
+              urlImg={urlSecondary}
+              title={titleSecondary}
+              description={descriptionSecondary}
+              className='flex col-span-2'
+            />
 
-        <CardContend
-          title={titleThird}
-          description={descriptionThird}
-        />
+            <CardContend
+              title={titleThird}
+              description={descriptionThird}
+            />
 
-        <CardContend
-          title={titleFourth}
-          description={descriptionFourth}
-        />
+            <CardContend
+              title={titleFourth}
+              description={descriptionFourth}
+            />
 
-      </Box>
+          </Box>
+      }
+
     </Grid>
   )
 }
@@ -79,13 +84,18 @@ export const CategoriesLayout = (
 CategoriesLayout.proptypes = {
   children: Proptypes.node.isRequired,
   title: Proptypes.string.isRequired,
-  urlSecondary: Proptypes.string.isRequired,
-  titlePrimary: Proptypes.string.isRequired,
-  titleSecondary: Proptypes.string.isRequired,
-  titleThird: Proptypes.string.isRequired,
-  titleFourth: Proptypes.string.isRequired,
-  descriptionPrimary: Proptypes.string.isRequired,
-  descriptionSecondary: Proptypes.string.isRequired,
-  descriptionThird: Proptypes.string.isRequired,
-  descriptionFourth: Proptypes.string.isRequired
+  disableGrid: Proptypes.bool,
+  urlSecondary: Proptypes.string,
+  titlePrimary: Proptypes.string,
+  titleSecondary: Proptypes.string,
+  titleThird: Proptypes.string,
+  titleFourth: Proptypes.string,
+  descriptionPrimary: Proptypes.string,
+  descriptionSecondary: Proptypes.string,
+  descriptionThird: Proptypes.string,
+  descriptionFourth: Proptypes.string
+}
+
+CategoriesLayout.defaultProps = {
+  disableGrid: false
 }

@@ -1,17 +1,13 @@
 import { Link as RouterLink } from 'react-router-dom'
 import { Grid, Badge, IconButton, Link } from '@mui/material'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
-import { useAuthStore, useCartStore } from '../hooks'
+import { useCartStore } from '../hooks'
 import { Search, MenuHam, Categories, AcountUser } from './components'
 import logo from '../assets/imgs/logos/logoP.webp'
 
 export const NavBar = () => {
-  const { status } = useAuthStore()
   const { basket } = useCartStore()
-
   const totalProducts = basket.reduce((accum, item) => accum + item.quantity, 0)
-
-  const isAuthenticated = status === 'authenticated'
 
   return (
     <Grid
@@ -44,7 +40,7 @@ export const NavBar = () => {
         <IconButton
           color='success'
           LinkComponent={RouterLink}
-          to={`${isAuthenticated ? '/cart' : '/auth'}`}
+          to='/cart'
           title='Ir al carrito de compras'
           aria-label='Ir al carrito de compras'
         >

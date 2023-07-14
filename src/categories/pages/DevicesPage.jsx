@@ -1,8 +1,13 @@
+import { useProductStore } from '../../hooks'
+import { CATEGORIES } from '../../helpers/categories'
 import { CategoriesLayout } from '../layout/CategoriesLayout'
-import { CardProduct } from '../../product/components'
+import { CardProduct, SkeletonProduct } from '../../product/components'
 import devicesDigital from '../../assets/imgs/backgrounds/devicesDigital.webp'
 
 export const DevicesPage = () => {
+  const { products } = useProductStore()
+
+  const componentsProducts = products?.filter(product => product.category === CATEGORIES.COMPONENTS)
   return (
     <CategoriesLayout
       title='Todos Nuestros Dispositivos'
@@ -16,13 +21,27 @@ export const DevicesPage = () => {
       descriptionFourth='Nos comprometemos a brindar un excelente servicio al cliente en cada etapa del proceso.'
       urlSecondary={devicesDigital}
     >
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
+      {
+        products
+          ? componentsProducts.map(({ id, ...props }) => (
+            <CardProduct
+              key={id}
+              id={id}
+              {...props}
+            />
+          ))
+          : (
+            <>
+              <SkeletonProduct />
+              <SkeletonProduct />
+              <SkeletonProduct />
+              <SkeletonProduct />
+              <SkeletonProduct />
+              <SkeletonProduct />
+              <SkeletonProduct />
+            </>
+            )
+      }
     </CategoriesLayout>
   )
 }

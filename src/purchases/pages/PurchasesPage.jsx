@@ -14,12 +14,15 @@ export const PurchasesPage = () => {
       >
         {
           pucharses
-            ? pucharses.map(({ id, ...props }) => {
+            ? pucharses.map(({ id, amount, products, dateShop, delivery }) => {
               return (
                 <ItemPurchases
                   key={id}
                   id={id}
-                  {...props}
+                  value={amount}
+                  products={products}
+                  dateShop={dateShop}
+                  delivery={delivery}
                 />
               )
             })

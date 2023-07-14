@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types'
 import { Box, Grid, Typography } from '@mui/material'
-import { getDayTranform, STATUSDELIVERY } from '../../helpers'
+import { formaterValue, getDayTranform, STATUSDELIVERY } from '../../helpers'
 import { ItemProduct, TitleInfo } from './'
 
-export const ItemPurchases = ({ id, value, dateShop, products, deliveryDay }) => {
+export const ItemPurchases = ({ id, value, dateShop, products, delivery }) => {
   const dateShopDay = getDayTranform(dateShop)
-  const dateDeliveryDay = getDayTranform(deliveryDay.date)
+  const dateDeliveryDay = getDayTranform(delivery.date)
 
-  const isCompleteDelivery = deliveryDay.status === STATUSDELIVERY.COMPLETE ? 'Se entrego el' : 'Fecha estimada de entrega'
+  const isCompleteDelivery = delivery.status === STATUSDELIVERY.COMPLETE ? 'Se entrego el' : 'Fecha estimada de entrega'
 
   return (
     <Grid
@@ -22,7 +22,7 @@ export const ItemPurchases = ({ id, value, dateShop, products, deliveryDay }) =>
       >
         <Box className='flex gap-5'>
           <TitleInfo title='PEDIDO REALIZADO' value={dateShopDay} />
-          <TitleInfo title='TOTAL' value={`$${value}`} />
+          <TitleInfo title='TOTAL' value={`${formaterValue(value)} MXN`} />
         </Box>
 
         <Box className='text-right ml-3'>
@@ -30,7 +30,7 @@ export const ItemPurchases = ({ id, value, dateShop, products, deliveryDay }) =>
             title={`PEDIDO N.º ${id}`}
             value='Ver detalles del pedido'
             link
-            to={`order-details?id=${id}&list=5`}
+            to={`order-details?id=${id}`}
           />
         </Box>
       </Grid>
@@ -48,10 +48,10 @@ export const ItemPurchases = ({ id, value, dateShop, products, deliveryDay }) =>
         className='px-3 mt-3 flex-col gap-2'
       >
         {
-          products.map(({ id, ...props }) => {
+          products.map(({ _id, ...props }) => {
             return (
               <ItemProduct
-                key={id}
+                key={_id}
                 {...props}
               />
             )
@@ -67,5 +67,5 @@ ItemPurchases.proptypes = {
   value: PropTypes.number.isRequired,
   dateShop: PropTypes.string.isRequired,
   products: PropTypes.array.isRequired,
-  deliveryDay: PropTypes.string.isRequired
+  delivery: PropTypes.string.isRequired
 }

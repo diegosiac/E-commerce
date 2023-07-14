@@ -1,43 +1,47 @@
+import { useEffect, useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import { Grid, Typography } from '@mui/material'
+import { useQuery } from '../../hooks'
+import { getCheckoutOrder } from '../../helpers'
 import { CheckoutStatusLayout } from '../layout/CheckoutStatusLayout'
 import { DetailsShop, ItemProduct } from '../../purchases/components'
 
 export const ExecutePaymentPage = () => {
-  const shoppingDay = '22 de mayo de 2023'
-  const id = '702-9971393-4082604'
-  const delivery = 'Entregado el 29 may. 2023'
+  const orderId = useQuery().get('id')
+  if (!orderId) return <Navigate to='/' replace />
 
-  const addressFullName = 'Diego Cruz Vázquez'
-  const addressLine1 = 'Calle 4 MZ 31 lt 26'
-  const addressLine2 = 'VALLE DE LOS REYES'
-  const addressCityOrRegionPC = 'LOS REYES ACAQUILPAN (LA PAZ), MEXICO, 56430'
-  const products = [
-    {
-      urlImg: 'https://m.media-amazon.com/images/I/51JY0jJhPAL._SY90_.jpg',
-      title: 'Harina Organicaa',
-      value: 132,
-      amount: 2
-    },
-    {
-      urlImg: 'https://m.media-amazon.com/images/I/51JY0jJhPAL._SY90_.jpg',
-      title: 'Placa base de datos',
-      value: 234,
-      amount: 5
-    }
-  ]
+  const [loading, setLoading] = useState(true)
+  const [order, setOrder] = useState(null)
+
+  useEffect(() => {
+    getOrder()
+  }, [])
+
+  const getOrder = async () => {
+    const order = await getCheckoutOrder({ orderId })
+
+    setOrder(order)
+    setLoading(false)
+  }
+
+  if (loading) return <>Hola</>
+
+  if (order === undefined) return <Navigate to='/' replace />
+
+  const { address, amount, id, dateShop, products, delivery } = order
+
   return (
-    <CheckoutStatusLayout title='Gracias por tu compra' boxColor='#00a650'>
+    <CheckoutStatusLayout title='Gracias por tu compra' boxColor='bg-green-600'>
 
       <Grid container className='mb-8'>
         <Typography variant='h4' component='h3' className='mb-3'>Detalles De La Compra</Typography>
         <DetailsShop
-          shoppingDay={shoppingDay}
+          shippingAddress={address}
+          totalValue={amount}
+          value={amount}
           id={id}
-          delivery={delivery}
-          addressFullName={addressFullName}
-          addressLine1={addressLine1}
-          addressLine2={addressLine2}
-          addressCityOrRegionPC={addressCityOrRegionPC}
+          dateShop={dateShop}
+          deliveryDay={delivery}
         />
       </Grid>
 
@@ -48,14 +52,14 @@ export const ExecutePaymentPage = () => {
           className='flex-col gap-5 p-4 bg-white'
         >
           {
-            products.map(({ urlImg, title, value, amount }) => {
+            products.map(({ _id, thumbnail, name, value, quantity }) => {
               return (
                 <ItemProduct
-                  key={title}
-                  title={title}
-                  urlImg={urlImg}
+                  key={_id}
+                  name={name}
+                  thumbnail={thumbnail}
                   value={value}
-                  amount={amount}
+                  amount={quantity}
                 />
               )
             })

@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types'
 import { Box, Button, CircularProgress, Container, Grid, Typography } from '@mui/material'
 import { useCartStore } from '../../hooks'
+import { formaterValue } from '../../helpers'
 import { STATUS } from '../../store/cart'
 
-export const ItemProduct = ({ id, index, name, thumbnail, price, stock, quantity, updateQuantityProducts, deleteProductItem }) => {
+export const ItemProduct = ({ id, index, name, thumbnail, value, stock, quantity, updateQuantityProducts, deleteProductItem }) => {
   const msgStock = stock === 1 ? 'Último disponible' : `${stock} disponibles`
   const handleDecrease = () => {
     updateQuantityProducts({ index, value: quantity - 1, id })
@@ -105,7 +106,7 @@ export const ItemProduct = ({ id, index, name, thumbnail, price, stock, quantity
         component='span'
         className='whitespace-nowrap text-end flex-grow'
       >
-        $ {price}
+        {formaterValue(value)}
       </Typography>
 
     </Container>
@@ -117,7 +118,7 @@ ItemProduct.propTypes = {
   index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
   quantity: PropTypes.number.isRequired,
   stock: PropTypes.number.isRequired,
   updateQuantityProducts: PropTypes.func.isRequired,

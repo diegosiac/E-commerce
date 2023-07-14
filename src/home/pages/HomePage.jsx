@@ -1,7 +1,10 @@
 import { Box, Grid, Typography } from '@mui/material'
-import { CardProduct } from '../../product/components'
+import { useProductStore } from '../../hooks/useProductStore'
+import { CardProduct, SkeletonProduct } from '../../product/components'
 
 export const HomePage = () => {
+  const { products } = useProductStore()
+
   return (
     <Grid
       container
@@ -9,8 +12,11 @@ export const HomePage = () => {
     >
       <Box className='m-5 md:m-7 w-11/12 h-72'>
         <img
-          src='../../assets/imgs/logos/presentation.webp'
-          alt='Imagen con prioridad alta'
+          src='../../assets/imgs/logos/presentationMobile.webp'
+          alt='Geek Mobile Repair'
+          srcSet='../../assets/imgs/logos/presentationMobile.webp 480w,
+          ../../assets/imgs/logos/presentation.webp 1200w'
+          sizes='(max-width: 767px) 480px, 1200px'
           className='w-full h-full object-cover'
         />
       </Box>
@@ -28,19 +34,27 @@ export const HomePage = () => {
           container
           className='justify-evenly gap-6'
         >
-
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-
+          {
+            products
+              ? products.map(({ id, ...props }) => (
+                <CardProduct
+                  key={id}
+                  id={id}
+                  {...props}
+                />
+              ))
+              : (
+                <>
+                  <SkeletonProduct />
+                  <SkeletonProduct />
+                  <SkeletonProduct />
+                  <SkeletonProduct />
+                  <SkeletonProduct />
+                  <SkeletonProduct />
+                  <SkeletonProduct />
+                </>
+                )
+          }
         </Grid>
 
       </Grid>

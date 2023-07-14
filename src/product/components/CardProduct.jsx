@@ -1,26 +1,27 @@
 import { Link as RouterLink } from 'react-router-dom'
 import Proptypes from 'prop-types'
 import { Card, CardActionArea, CardContent, CardMedia, Divider, Typography } from '@mui/material'
-import placaBase from '../../assets/imgs/placaBase.jpg'
+import { formaterValue } from '../../helpers'
 
-export const CardProduct = ({ title, urlProduct, value, id }) => {
+export const CardProduct = ({ name, thumbnail, value, id }) => {
+  const textLink = name.trim().replace(/ /g, '-')
   return (
     <Card className='w-[270px] bg-white'>
       <CardActionArea
         LinkComponent={RouterLink}
-        to={`/product/${title}?id=${id}`}
-        title={`Ir a ${title}`}
+        to={`/product/${textLink}?id=${id}`}
+        name={`Ir a ${name}`}
       >
         <CardMedia
           component='img'
           className='h-[200px] object-contain'
-          image={urlProduct}
-          alt={title}
+          image={thumbnail}
+          alt={name}
         />
         <Divider />
         <CardContent>
-          <Typography variant='h5' component='span' className='text-xl'>
-            $ {value}
+          <Typography variant='h4' component='span'>
+            {formaterValue(value)}
           </Typography>
           <Typography
             component='span'
@@ -29,7 +30,7 @@ export const CardProduct = ({ title, urlProduct, value, id }) => {
             Envío gratis
           </Typography>
           <Typography component='h3'>
-            {title}
+            {name}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -38,15 +39,8 @@ export const CardProduct = ({ title, urlProduct, value, id }) => {
 }
 
 CardProduct.proptypes = {
-  title: Proptypes.string.isRequired,
-  urlProduct: Proptypes.string.isRequired,
+  name: Proptypes.string.isRequired,
+  thumbnail: Proptypes.string.isRequired,
   value: Proptypes.number.isRequired,
   id: Proptypes.number.isRequired
-}
-
-CardProduct.defaultProps = {
-  title: 'Dpofirs Placa Madre de Telefono Movil para G950U,Ecológico Celular Placa Base',
-  urlProduct: placaBase,
-  value: 148,
-  id: 'f293h92'
 }

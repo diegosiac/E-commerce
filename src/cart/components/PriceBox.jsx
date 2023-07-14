@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Button, Container, Grid } from '@mui/material'
+import { formaterValue } from '../../helpers'
 import { CartLayout } from '../layout/CartLayout'
 import { Prices } from './Prices'
 
 export const PriceBox = ({ products }) => {
-  const totalPrice = products.reduce((accum, product) => accum + (product.price * product.quantity), 0)
+  const totalPrice = products.reduce((accum, product) => accum + (product.value * product.quantity), 0)
 
   const totalProducts = products.reduce((accum, product) => accum + product.quantity, 0)
 
@@ -14,7 +15,7 @@ export const PriceBox = ({ products }) => {
       <Grid container>
         <Prices
           title={`Productos (${totalProducts})`}
-          value={`$ ${totalPrice}`}
+          value={formaterValue(totalPrice)}
           classTitle='text-sm'
           classValue='text-sm'
         />
@@ -26,7 +27,7 @@ export const PriceBox = ({ products }) => {
         />
         <Prices
           title='Total'
-          value={`$ ${totalPrice}`}
+          value={`${formaterValue(totalPrice)} MXN`}
           classTitle='text-base font-semibold'
           classValue='text-base font-semibold'
         />

@@ -1,8 +1,13 @@
-import { CardProduct } from '../../product/components'
+import { useProductStore } from '../../hooks'
+import { CATEGORIES } from '../../helpers/categories'
+import { CardProduct, SkeletonProduct } from '../../product/components'
 import { CategoriesLayout } from '../layout/CategoriesLayout'
 import smartphoneRepair from '../../assets/imgs/backgrounds/smartphoneRepair.webp'
 
 export const RepairsPage = () => {
+  const { products } = useProductStore()
+
+  const componentsProducts = products?.filter(product => product.category === CATEGORIES.COMPONENTS)
   return (
     <CategoriesLayout
       title='Todas Nuestras Reparaciónes'
@@ -16,13 +21,27 @@ export const RepairsPage = () => {
       descriptionFourth='Respaldamos nuestro trabajo con garantías sólidas. Queremos que te sientas seguro y satisfecho con nuestros servicios.'
       urlSecondary={smartphoneRepair}
     >
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
-      <CardProduct />
+      {
+        products
+          ? componentsProducts.map(({ id, ...props }) => (
+            <CardProduct
+              key={id}
+              id={id}
+              {...props}
+            />
+          ))
+          : (
+            <>
+              <SkeletonProduct />
+              <SkeletonProduct />
+              <SkeletonProduct />
+              <SkeletonProduct />
+              <SkeletonProduct />
+              <SkeletonProduct />
+              <SkeletonProduct />
+            </>
+            )
+      }
     </CategoriesLayout>
   )
 }

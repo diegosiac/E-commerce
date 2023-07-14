@@ -1,13 +1,13 @@
 import { useMemo } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
 import { object, string } from 'yup'
 import { Alert, Grid, Link, TextField, Typography } from '@mui/material'
 import { startRegister } from '../../store/auth'
 import { AuthLayout } from '../layout/AuthLayout'
 import { InputPassword, InputLoding } from '../components'
-import { useClearMessage } from '../../hooks'
+import { useAuthStore, useClearMessage } from '../../hooks'
 
 const initialValues = {
   name: '',
@@ -30,7 +30,7 @@ const validationSchema = object({
 })
 
 export const RegisterPage = () => {
-  const { status, errorMessage } = useSelector(state => state.auth)
+  const { status, errorMessage } = useAuthStore()
   const isCheckingAuthentication = useMemo(() => status === 'checking', [status])
 
   const dispatch = useDispatch()
@@ -101,7 +101,7 @@ export const RegisterPage = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <InputLoding loading={isCheckingAuthentication} text='Crear Cuenta' />
+              <InputLoding loading={isCheckingAuthentication} text='Crear Cuenta' type='submit' />
             </Grid>
           </Grid>
 

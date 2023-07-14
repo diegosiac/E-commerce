@@ -5,15 +5,15 @@ export const RowShop = ({ label, value, strong, colorValue }) => {
   const valueColor = colorValue ? `text-[${colorValue}]` : ''
 
   return (
-    <Box className='flex'>
+    <Box className='flex justify-between'>
       <Typography
-        className={`w-[77.448%] ${strong ? 'font-bold' : ''}`}
+        className={`max-w-[68%] ${strong ? 'font-bold' : ''}`}
         component='span'
       >{label}:
       </Typography>
 
       <Typography
-        className={`w-[20.448%] text-right ${strong ? 'font-bold' : ''} ${valueColor}`}
+        className={`text-right ${strong ? 'font-bold' : ''} ${valueColor}`}
         component='span'
       >{value}
       </Typography>

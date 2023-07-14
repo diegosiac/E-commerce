@@ -8,7 +8,7 @@ export const CheckoutStatusLayout = ({ children, title, boxColor }) => {
       className='justify-center w-10/12 pt-10 pb-20'
     >
       <Container className='flex w-full p-0'>
-        <Box className={`w-[10px] h-full bg-[${boxColor || '#fff'}] mr-3`} />
+        <Box className={`w-[10px] h-full mr-3 ${boxColor}`} />
         <Typography
           variant='h2'
           component='h2'

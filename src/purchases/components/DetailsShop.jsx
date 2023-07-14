@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'
 import { Box, Grid, Typography } from '@mui/material'
+import { STATUSDELIVERY, formaterValue, getDayTranform } from '../../helpers'
 import { RowShop } from './'
-import { STATUSDELIVERY, getDayTranform } from '../../helpers'
 
 export const DetailsShop = ({ id, shippingAddress, totalValue, value, dateShop, deliveryDay }) => {
-  const { country, zip, state, name, lastName, firtsLine, cologne, city } = shippingAddress
+  const { countryRegion, zip, state, firstName, lastName, address1, sublocality, locality, phoneNumber } = shippingAddress
 
   const dateShopDay = getDayTranform(dateShop)
   const dateDeliveryDay = getDayTranform(deliveryDay.date)
@@ -34,12 +34,13 @@ export const DetailsShop = ({ id, shippingAddress, totalValue, value, dateShop, 
           <Typography
             className='mt-1'
             component='span'
-          >{`${name} ${lastName}`}
+          >{`${firstName} ${lastName}`}
           </Typography>
-          <Typography component='span'>{firtsLine}</Typography>
-          <Typography component='span'>{cologne}</Typography>
-          <Typography component='span'>{city}</Typography>
-          <Typography component='span'>{`${country}, ${zip}, ${state}`}</Typography>
+          <Typography component='span'>{address1}</Typography>
+          <Typography component='span'>{sublocality}</Typography>
+          <Typography component='span'>{locality}</Typography>
+          <Typography component='span'>{`${countryRegion}, ${zip}, ${state}`}</Typography>
+          <Typography component='span'>{phoneNumber}</Typography>
         </Box>
 
         <Box>
@@ -49,13 +50,12 @@ export const DetailsShop = ({ id, shippingAddress, totalValue, value, dateShop, 
             className='block mb-1'
           >Resumen del pedido
           </Typography>
-
-          <RowShop label='Productos' value={totalValue} />
+          <RowShop label='Productos' value={formaterValue(totalValue)} />
           <RowShop label='Envío' value='Gratis' colorValue='#00a650' />
-          <RowShop label='Subtotal' value={totalValue} />
+          <RowShop label='Subtotal' value={formaterValue(totalValue)} />
           <RowShop
             label='Total (IVA incluido, en caso de ser aplicable)'
-            value={`$ ${value}`}
+            value={`${formaterValue(value)} MXN`}
             strong
           />
         </Box>

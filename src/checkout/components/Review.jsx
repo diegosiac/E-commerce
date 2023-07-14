@@ -1,45 +1,35 @@
+import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Box, Button, Grid, List, Typography } from '@mui/material'
+import { formaterValue, setCheckout } from '../../helpers'
 import { Paypal } from '../../icons/Paypal'
 import { ListItemsShop } from './ListItemsShop'
 
-const products = [
-  {
-    name: 'Product 1',
-    amount: 2,
-    price: '$9.99'
-  },
-  {
-    name: 'Product 2',
-    amount: 1,
-    price: '$3.45'
-  },
-  {
-    name: 'Product 3',
-    amount: 4,
-    price: '$6.51'
-  },
-  {
-    name: 'Product 4',
-    amount: 5,
-    price: '$14.11'
+export const Review = ({ handleBack, addressData, basket }) => {
+  const [loading, setLoading] = useState(false)
+
+  const { firstName, lastName, phoneNumber, address1, countryRegion, zip, locality, sublocality, state } = addressData
+
+  const totalValue = basket.reduce((accum, item) => (accum + item.value) * item.quantity, 0)
+  const completeAddress = `${address1}, ${sublocality}, ${locality}, ${state}, ${zip}, ${countryRegion}`
+
+  const handleCheckout = async () => {
+    if (loading) return
+    setLoading(true)
+    const { link } = await setCheckout({ address: addressData })
+
+    window.location.href = link.href
   }
-]
 
-const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA']
-
-const userName = 'Diego Cruz'
-
-export const Review = ({ handleBack }) => {
   return (
     <>
       <List className='p-0'>
-        {products.map((product) => (
+        {basket.map((product) => (
           <ListItemsShop
-            key={product.name}
+            key={product.id}
             primary={product.name}
-            secondary={`Cantidad: ${product.amount}`}
-            value={product.price}
+            secondary={`Cantidad: ${product.quantity}`}
+            value={`${formaterValue(product.value)}`}
           />
         ))}
 
@@ -49,10 +39,9 @@ export const Review = ({ handleBack }) => {
         />
         <ListItemsShop
           primary='Total'
-          value='$34.06'
+          value={`${formaterValue(totalValue)} MXN`}
           bold
         />
-
       </List>
 
       <Grid container>
@@ -60,8 +49,9 @@ export const Review = ({ handleBack }) => {
           <Typography variant='subtitle1' className='my-2'>
             Datos de Envío
           </Typography>
-          <Typography component='span' className='block'>{userName}</Typography>
-          <Typography component='span' className='block'>{addresses.join(', ')}</Typography>
+          <Typography component='span' className='block'>{`${firstName} ${lastName}`}</Typography>
+          <Typography component='span' className='block'>{completeAddress}</Typography>
+          <Typography component='span' className='block'>{phoneNumber}</Typography>
         </Grid>
       </Grid>
 
@@ -81,6 +71,8 @@ export const Review = ({ handleBack }) => {
           color='warning'
           startIcon={<Paypal />}
           aria-label='Pagar Con Paypal'
+          onClick={handleCheckout}
+          disabled={loading}
         >
           Pagar Con Paypal
         </Button>
@@ -90,5 +82,7 @@ export const Review = ({ handleBack }) => {
 }
 
 Review.propTypes = {
-  handleBack: PropTypes.func.isRequired
+  handleBack: PropTypes.func.isRequired,
+  addressData: PropTypes.object.isRequired,
+  basket: PropTypes.array.isRequired
 }
