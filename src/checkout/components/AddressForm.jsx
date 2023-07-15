@@ -169,10 +169,6 @@ export const AddressForm = ({ handleNext, setData, addressData }) => {
                 helperText={touched.countryRegion && !values.countryRegion ? errors.countryRegion : ''}
                 variant='standard'
                 aria-label='Elige tu País o región'
-                inputProps={{
-                  ...params.inputProps,
-                  autoComplete: 'new-password'
-                }}
               />
             )}
           />

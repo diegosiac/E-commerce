@@ -5,6 +5,7 @@ import { useQuery } from '../../hooks'
 import { getCheckoutOrder } from '../../helpers'
 import { CheckoutStatusLayout } from '../layout/CheckoutStatusLayout'
 import { DetailsShop, ItemProduct } from '../../purchases/components'
+import { SkeletonCheckout } from '../components'
 
 export const ExecutePaymentPage = () => {
   const orderId = useQuery().get('id')
@@ -24,17 +25,16 @@ export const ExecutePaymentPage = () => {
     setLoading(false)
   }
 
-  if (loading) return <>Hola</>
+  if (loading) return <SkeletonCheckout />
 
   if (order === undefined) return <Navigate to='/' replace />
 
   const { address, amount, id, dateShop, products, delivery } = order
-
   return (
     <CheckoutStatusLayout title='Gracias por tu compra' boxColor='bg-green-600'>
 
       <Grid container className='mb-8'>
-        <Typography variant='h4' component='h3' className='mb-3'>Detalles De La Compra</Typography>
+        <Typography variant='h4' component='h3' className='mb-3'>Detalles de la Compra</Typography>
         <DetailsShop
           shippingAddress={address}
           totalValue={amount}

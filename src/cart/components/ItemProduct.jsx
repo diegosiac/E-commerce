@@ -30,10 +30,10 @@ export const ItemProduct = ({ id, index, name, thumbnail, value, stock, quantity
     >
       <Grid
         component='article'
-        className='flex pb-5 w-full lg:w-max mr-16'
+        className='flex pb-4 w-full lg:w-max mr-16'
       >
-        <img src={thumbnail} alt={name} className='h-16' />
-        <Grid item className='flex justify-between flex-col items-start ml-2'>
+        <img src={thumbnail} alt={name} className='h-20 aspect-[5/5] bg-gray-100' />
+        <Grid item className='flex justify-between flex-col items-start ml-4'>
           <Typography
             variant='h4'
             component='span'

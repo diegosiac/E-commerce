@@ -24,7 +24,7 @@ export const AppRouter = () => {
               <Footer />
             </>
             )
-          : <h1>Cargando...</h1>
+          : <></>
       }
     </>
   )
