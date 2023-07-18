@@ -52,7 +52,7 @@ export const AddressForm = ({ handleNext, setData, addressData }) => {
 
     const timer = setTimeout(() => {
       if (!errors.zip && !errors.countryRegion && touched.countryRegion) {
-        handleFormSubmit(values.countryRegion, values.zip)
+        validateZip(values.countryRegion, values.zip)
       }
     }, 1500)
 
@@ -61,7 +61,7 @@ export const AddressForm = ({ handleNext, setData, addressData }) => {
     }
   }, [values.zip, errors.zip])
 
-  const handleFormSubmit = async (country, zip) => {
+  const validateZip = async (country, zip) => {
     setLoading(true)
     const dataZip = await getLocation({ country, zip })
     setZipValidation(dataZip || false)
@@ -169,6 +169,10 @@ export const AddressForm = ({ handleNext, setData, addressData }) => {
                 helperText={touched.countryRegion && !values.countryRegion ? errors.countryRegion : ''}
                 variant='standard'
                 aria-label='Elige tu País o región'
+                inputProps={{
+                  ...params.inputProps,
+                  autoComplete: 'new-password'
+                }}
               />
             )}
           />

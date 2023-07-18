@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types'
 import { Box, Button, CircularProgress, Container, Grid, Typography } from '@mui/material'
-import { useCartStore } from '../../hooks'
 import { formaterValue } from '../../helpers'
 import { STATUS } from '../../store/cart'
 
-export const ItemProduct = ({ id, index, name, thumbnail, value, stock, quantity, updateQuantityProducts, deleteProductItem }) => {
+export const ItemProduct = ({ id, index, name, thumbnail, value, stock, quantity, updateQuantityProducts, deleteProductItem, status, idCheking }) => {
   const msgStock = stock === 1 ? 'Último disponible' : `${stock} disponibles`
   const handleDecrease = () => {
     updateQuantityProducts({ index, value: quantity - 1, id })
@@ -14,11 +13,9 @@ export const ItemProduct = ({ id, index, name, thumbnail, value, stock, quantity
     updateQuantityProducts({ index, value: quantity + 1, id })
   }
 
-  const handleProductItem = () => {
+  const handleDeleteItem = () => {
     deleteProductItem({ index, id })
   }
-
-  const { status, idCheking } = useCartStore()
 
   const isStatusChecking = status === STATUS.CHECKING
   const isUpdateItem = isStatusChecking && id === idCheking
@@ -45,7 +42,7 @@ export const ItemProduct = ({ id, index, name, thumbnail, value, stock, quantity
             type='submit'
             color='success'
             className='p-0'
-            onClick={handleProductItem}
+            onClick={handleDeleteItem}
             disabled={isStatusChecking}
             title='Eliminar'
             aria-label='Eliminar'
@@ -122,5 +119,7 @@ ItemProduct.propTypes = {
   quantity: PropTypes.number.isRequired,
   stock: PropTypes.number.isRequired,
   updateQuantityProducts: PropTypes.func.isRequired,
-  deleteProductItem: PropTypes.func.isRequired
+  deleteProductItem: PropTypes.func.isRequired,
+  status: PropTypes.string,
+  idCheking: PropTypes.string
 }

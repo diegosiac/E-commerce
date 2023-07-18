@@ -7,7 +7,13 @@ import logo from '../assets/imgs/logos/logoP.webp'
 
 export const NavBar = () => {
   const { basket } = useCartStore()
-  const totalProducts = basket.reduce((accum, item) => accum + item.quantity, 0)
+  const totalProducts = basket.reduce((accum, item) => {
+    if (item.stock > 0) {
+      accum += item.quantity
+    }
+
+    return accum
+  }, 0)
 
   return (
     <Grid

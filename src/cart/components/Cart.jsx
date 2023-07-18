@@ -1,12 +1,14 @@
 import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
 import { Grid, Typography } from '@mui/material'
-import { ItemProduct } from './ItemProduct'
-import { CartLayout } from '../layout/CartLayout'
+import { useCartStore } from '../../hooks'
 import { setBasket } from '../../store/cart'
+import { CartLayout } from '../layout/CartLayout'
+import { ItemProductNotAvalible, ItemProduct } from './'
 
 export const Cart = ({ products }) => {
   const dispatch = useDispatch()
+  const { status, idCheking } = useCartStore()
 
   const updateQuantityProducts = async ({ index, value, id }) => {
     const newBasket = products.map((product, i) => {
@@ -27,7 +29,6 @@ export const Cart = ({ products }) => {
 
     dispatch(setBasket({ newBasket, id }))
   }
-
   return (
     <CartLayout
       title='Productos'
@@ -35,16 +36,39 @@ export const Cart = ({ products }) => {
     >
       <Grid container className='justify-center items-center min-h-[200px]'>
         {
-          products.map(({ id, ...product }, index) => (
-            <ItemProduct
-              key={id}
-              id={id}
-              index={index}
-              updateQuantityProducts={updateQuantityProducts}
-              deleteProductItem={deleteProductItem}
-              {...product}
-            />
-          ))
+          products.map(({ id, name, thumbnail, value, stock, quantity }, index) => {
+            if (stock === 0) {
+              return (
+                <ItemProductNotAvalible
+                  key={id}
+                  id={id}
+                  thumbnail={thumbnail}
+                  name={name}
+                  index={index}
+                  status={status}
+                  idCheking={idCheking}
+                  deleteProductItem={deleteProductItem}
+                />
+              )
+            }
+
+            return (
+              <ItemProduct
+                key={id}
+                id={id}
+                index={index}
+                name={name}
+                thumbnail={thumbnail}
+                value={value}
+                stock={stock}
+                quantity={quantity}
+                status={status}
+                idCheking={idCheking}
+                updateQuantityProducts={updateQuantityProducts}
+                deleteProductItem={deleteProductItem}
+              />
+            )
+          })
         }
         {
           products.length === 0 &&

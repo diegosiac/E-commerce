@@ -24,12 +24,14 @@ export const CheckoutPage = () => {
 
   const handleBack = () => setActiveStep(activeStep - 1)
 
+  const products = basket.filter(item => item.stock > 0)
+
   const getStepContent = (step) => {
     switch (step) {
       case 0:
         return <AddressForm handleNext={handleNext} setData={setAddressData} addressData={addressData} />
       case 1:
-        return <Review handleBack={handleBack} addressData={addressData} basket={basket} />
+        return <Review handleBack={handleBack} addressData={addressData} basket={products} />
       default:
         throw new Error('Unknown step')
     }
