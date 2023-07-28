@@ -56,6 +56,7 @@ export const Search = () => {
   return (
     <Paper
       component='form'
+      data-testid='form-search'
       className='flex items-center relative bg-white'
       onSubmit={handleSubmit}
     >
@@ -98,7 +99,7 @@ export const Search = () => {
                 >
                   <SearchIcon />
                 </IconButton>
-                            </Box>
+              </Box>
             }}
           />}
       />

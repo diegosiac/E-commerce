@@ -21,7 +21,7 @@ export const SearchPage = () => {
     }
   }, [queryRef])
 
-  if (!queryRef) return <Navigate to='/' />
+  if (!queryRef) return <Navigate to='/' replace />
 
   const setResultProducts = async (query) => {
     const results = await getProductSearch(query)
@@ -45,7 +45,7 @@ export const SearchPage = () => {
           ))
           : <Grid container className='bg-white justify-center items-center min-h-[400px] rounded-xl'>
             <Typography variant='h4' component='h2'>No se encontraron resultados</Typography>
-          </Grid>
+            </Grid>
       }
     </CategoriesLayout>
   )

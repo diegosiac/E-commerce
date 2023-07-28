@@ -13,7 +13,7 @@ export const PurchasesPage = () => {
         className='min-h-[250px] flex-col gap-5 mt-5'
       >
         {
-          pucharses
+          pucharses.length > 0
             ? pucharses.map(({ id, amount, products, dateShop, delivery }) => {
               return (
                 <ItemPurchases
@@ -38,7 +38,7 @@ export const PurchasesPage = () => {
               >
                 Aún no ha hecho una compra
               </Typography>
-            </Grid>
+              </Grid>
         }
       </Grid>
     </PurchasesLayout>

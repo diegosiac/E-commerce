@@ -1,11 +1,12 @@
 import { useSelector } from 'react-redux'
 
 export const useCartStore = () => {
-  const { basket, status, idCheking, pucharses } = useSelector(state => state.cart)
+  const { basket, status, idCheking, pucharses, messageError } = useSelector(state => state.cart)
   return {
     basket,
     status,
+    idCheking,
     pucharses,
-    idCheking
+    messageError
   }
 }

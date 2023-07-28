@@ -10,12 +10,14 @@ export const PriceBox = ({ products }) => {
 
   const totalProducts = products.reduce((accum, product) => accum + product.quantity, 0)
 
+  const value = formaterValue(totalPrice)
+
   return (
     <CartLayout title='Resumen de compra' className='w-80 self-start px-7 pb-7'>
       <Grid container>
         <Prices
           title={`Productos (${totalProducts})`}
-          value={formaterValue(totalPrice)}
+          value={value}
           classTitle='text-sm'
           classValue='text-sm'
         />
@@ -27,7 +29,7 @@ export const PriceBox = ({ products }) => {
         />
         <Prices
           title='Total'
-          value={`${formaterValue(totalPrice)} MXN`}
+          value={`${value} MXN`}
           classTitle='text-base font-semibold'
           classValue='text-base font-semibold'
         />

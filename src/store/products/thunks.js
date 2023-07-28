@@ -5,6 +5,7 @@ export const getProductsApi = () => {
   return async (dispatch) => {
     try {
       const { data } = await ecommerceApi.get('products')
+
       dispatch(setProducts(data.data.products))
     } catch (error) {
     }

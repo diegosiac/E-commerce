@@ -2,7 +2,7 @@ import { Grid, Skeleton } from '@mui/material'
 
 export const SkeletonCheckout = () => {
   return (
-    <Grid className='w-10/12 mt-8 mb-16'>
+    <Grid className='w-10/12 mt-8 mb-16' data-testid='SkeletonCheckout'>
 
       <Skeleton variant='rectangular' className='h-10 w-60 mb-8' />
 

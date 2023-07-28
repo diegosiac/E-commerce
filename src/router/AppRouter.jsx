@@ -9,23 +9,15 @@ export const AppRouter = () => {
 
   return (
     <>
-      {
-        status !== 'checking'
-          ? (
-            <>
-              <Routes>
-                {
-                  status === 'not-authenticated' &&
-                    <Route path='auth/*' element={<AuthRoutes />} />
-                }
+      <Routes>
+        {
+          status !== 'authenticated' &&
+            <Route path='auth/*' element={<AuthRoutes />} />
+        }
 
-                <Route path='/*' element={<PublicRouter />} />
-              </Routes>
-              <Footer />
-            </>
-            )
-          : <></>
-      }
+        <Route path='/*' element={<PublicRouter />} />
+      </Routes>
+      <Footer />
     </>
   )
 }

@@ -9,6 +9,6 @@ export const getLocation = async ({ country, zip }) => {
 
     return data.results
   } catch (error) {
-    return error
+    return undefined
   }
 }

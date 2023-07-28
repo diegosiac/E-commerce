@@ -12,15 +12,19 @@ export const InputLoding = ({ loading, text, className, disabled, ...props }) =>
       disabled={loading || disabled}
       {...props}
     >
-      {loading && <CircularProgress size={25} className='text-[#686868]' />}
-      {!loading && text}
+      {
+        loading
+          ? <CircularProgress size={25} className='text-[#686868]' />
+          : text
+      }
     </Button>
   )
 }
 
 InputLoding.defaultProps = {
   loading: false,
-  text: 'Enviar'
+  text: 'Enviar',
+  className: ''
 }
 
 InputLoding.propTypes = {

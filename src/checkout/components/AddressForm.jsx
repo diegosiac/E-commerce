@@ -38,7 +38,7 @@ const validationSchema = object({
 })
 
 export const AddressForm = ({ handleNext, setData, addressData }) => {
-  const [zipValidation, setZipValidation] = useState(addressData.zip ? true : null)
+  const [zipValidation, setZipValidation] = useState(addressData?.zip ? true : null)
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
 
@@ -54,7 +54,7 @@ export const AddressForm = ({ handleNext, setData, addressData }) => {
       if (!errors.zip && !errors.countryRegion && touched.countryRegion) {
         validateZip(values.countryRegion, values.zip)
       }
-    }, 1500)
+    }, 1300)
 
     return () => {
       clearTimeout(timer)

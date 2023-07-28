@@ -1,9 +1,9 @@
+import { Navigate } from 'react-router-dom'
 import { Grid } from '@mui/material'
 import { useCartStore, useQuery } from '../../hooks'
 import { getOrder } from '../../helpers'
 import { PurchasesLayout } from '../layout/PurchasesLayout'
 import { DetailsShop, ItemProduct } from '../components'
-import { Navigate } from 'react-router-dom'
 
 export const OrderDetailsPage = () => {
   const { pucharses } = useCartStore()

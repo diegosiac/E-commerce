@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes, Link as LinkRouter, useLocation } from 'react-router-dom'
-import { PurchasesPage, OrderDetailsPage } from '../pages'
 import { Breadcrumbs, Link, Typography } from '@mui/material'
+import { PurchasesPage, OrderDetailsPage } from '../pages'
 
 export const PurchasesRouter = () => {
   const { pathname } = useLocation()

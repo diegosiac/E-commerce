@@ -4,10 +4,10 @@ import { useDispatch } from 'react-redux'
 import { useFormik } from 'formik'
 import { object, string } from 'yup'
 import { Alert, Grid, Link, TextField, Typography } from '@mui/material'
+import { useAuthStore, useClearMessage } from '../../hooks'
 import { startLogin } from '../../store/auth'
 import { AuthLayout } from '../layout/AuthLayout'
 import { InputLoding, InputPassword } from '../components'
-import { useAuthStore, useClearMessage } from '../../hooks'
 
 const initialValues = {
   email: '',
@@ -53,6 +53,7 @@ export const LoginPage = () => {
               placeholder='correo@google.com'
               value={values.email}
               onChange={handleChange}
+              helperText={errors.email}
               color='success'
               autoComplete='email'
               aria-label='Ingresa tu correo'

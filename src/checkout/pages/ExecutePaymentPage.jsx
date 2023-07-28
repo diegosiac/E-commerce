@@ -9,6 +9,7 @@ import { SkeletonCheckout } from '../components'
 
 export const ExecutePaymentPage = () => {
   const orderId = useQuery().get('id')
+
   if (!orderId) return <Navigate to='/' replace />
 
   const [loading, setLoading] = useState(true)
@@ -30,6 +31,7 @@ export const ExecutePaymentPage = () => {
   if (order === undefined) return <Navigate to='/' replace />
 
   const { address, amount, id, dateShop, products, delivery } = order
+
   return (
     <CheckoutStatusLayout title='Gracias por tu compra' boxColor='bg-green-600'>
 

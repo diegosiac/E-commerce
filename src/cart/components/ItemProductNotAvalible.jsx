@@ -12,6 +12,7 @@ export const ItemProductNotAvalible = ({ id, thumbnail, name, index, deleteProdu
     <Container
       component='section'
       className='flex flex-wrap py-3 border-b-[1px] border-[#dadada]'
+      data-testid='ItemProductNotAvalible'
     >
       <Grid
         component='article'

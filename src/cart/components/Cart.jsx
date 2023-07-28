@@ -7,10 +7,10 @@ import { CartLayout } from '../layout/CartLayout'
 import { ItemProductNotAvalible, ItemProduct } from './'
 
 export const Cart = ({ products }) => {
-  const dispatch = useDispatch()
   const { status, idCheking } = useCartStore()
+  const dispatch = useDispatch()
 
-  const updateQuantityProducts = async ({ index, value, id }) => {
+  const updateQuantityProducts = ({ index, value, id }) => {
     const newBasket = products.map((product, i) => {
       if (i === index) {
         return {
@@ -29,6 +29,7 @@ export const Cart = ({ products }) => {
 
     dispatch(setBasket({ newBasket, id }))
   }
+
   return (
     <CartLayout
       title='Productos'

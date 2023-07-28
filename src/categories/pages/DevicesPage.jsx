@@ -7,7 +7,7 @@ import devicesDigital from '../../assets/imgs/backgrounds/devicesDigital.webp'
 export const DevicesPage = () => {
   const { products } = useProductStore()
 
-  const componentsProducts = products?.filter(product => product.category === CATEGORIES.COMPONENTS)
+  const componentsProducts = products?.filter(product => product.category === CATEGORIES.DEVICES)
   return (
     <CategoriesLayout
       title='Todos Nuestros Dispositivos'

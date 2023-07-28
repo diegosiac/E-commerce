@@ -8,9 +8,10 @@ export const ProductPage = () => {
   const { status: isAuth } = useAuthStore()
   const { products } = useProductStore()
   const { status, basket } = useCartStore()
-  const querys = useQuery()
-  const queryId = querys.get('id')
   const dispatch = useDispatch()
+  const querys = useQuery()
+
+  const queryId = querys.get('id')
 
   if (!products) {
     return (
@@ -22,13 +23,13 @@ export const ProductPage = () => {
 
   const isValidProduct = products.find(product => product.id === queryId)
 
-  if (!isValidProduct) return <Navigate to='not-found' />
+  if (!isValidProduct) return <Navigate to='not-found' replace />
 
   const isAuthenticated = isAuth === 'authenticated'
 
   const { name, value, stock, thumbnail, description, id } = isValidProduct
 
-  const isExistProductCart = basket.find(product => product.id_product === id)
+  const isExistProductCart = basket.some(product => product.id_product === id)
 
   const textLink = name.trim().replace(/ /g, '-')
 
@@ -50,7 +51,7 @@ export const ProductPage = () => {
         id={id}
         handleAddToBasket={handleAddToBasket}
         status={status}
-        statusProduct={!!isExistProductCart}
+        statusProduct={isExistProductCart}
         isAuthenticated={isAuthenticated}
       />
     </>

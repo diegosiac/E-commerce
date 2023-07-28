@@ -3,21 +3,20 @@ import Proptypes from 'prop-types'
 import { CardContend } from '../components/CardContend'
 import hardware from '../../assets/imgs/backgrounds/hardware.webp'
 
-export const CategoriesLayout = (
-  {
-    children,
-    title,
-    disableGrid,
-    urlSecondary,
-    titlePrimary,
-    titleSecondary,
-    titleThird,
-    titleFourth,
-    descriptionPrimary,
-    descriptionSecondary,
-    descriptionThird,
-    descriptionFourth
-  }) => {
+export const CategoriesLayout = ({
+  children,
+  title,
+  disableGrid,
+  urlSecondary,
+  titlePrimary,
+  titleSecondary,
+  titleThird,
+  titleFourth,
+  descriptionPrimary,
+  descriptionSecondary,
+  descriptionThird,
+  descriptionFourth
+}) => {
   return (
     <Grid
       container

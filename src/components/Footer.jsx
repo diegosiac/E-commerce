@@ -10,7 +10,7 @@ export const Footer = () => {
       className='w-full p-9 justify-between'
       bgcolor='primary.main'
     >
-      <Grid container component='address'>
+      <Grid container component='address' className='not-italic'>
 
         <Grid
           item
@@ -47,7 +47,7 @@ export const Footer = () => {
             </Typography>
             <Link
               href='https://www.instagram.com/geek.mobile.repair/'
-              color='white'
+              color='common.white'
               className='px-1'
               target='_blank'
               rel='noopener noreferrer'
@@ -57,7 +57,7 @@ export const Footer = () => {
             </Link>
             <Link
               href='https://www.facebook.com/profile.php?id=100069441991396'
-              color='white'
+              color='common.white'
               className='px-1'
               target='_blank'
               rel='noopener noreferrer'
@@ -67,7 +67,7 @@ export const Footer = () => {
             </Link>
             <Link
               href='https://www.tiktok.com/@geek.mobile.repair'
-              color='white'
+              color='common.white'
               className='px-1'
               target='_blank'
               rel='noopener noreferrer'

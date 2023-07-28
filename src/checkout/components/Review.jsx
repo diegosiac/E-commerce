@@ -18,7 +18,7 @@ export const Review = ({ handleBack, addressData, basket }) => {
     setLoading(true)
     const { link } = await setCheckout({ address: addressData })
 
-    window.location.href = link.href
+    window.location.assign(link.href)
   }
 
   return (

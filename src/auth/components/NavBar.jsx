@@ -7,7 +7,7 @@ export const NavBar = () => {
     <Grid
       container
       component='nav'
-      className='w-6/6 h-16 items-center'
+      className='w-6/6 h-20 items-center'
       bgcolor='primary.main'
     >
       <Link component={RouterLink} to='/' className='ml-4'>

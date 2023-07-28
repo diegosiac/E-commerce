@@ -7,7 +7,7 @@ import smartphoneRepair from '../../assets/imgs/backgrounds/smartphoneRepair.web
 export const RepairsPage = () => {
   const { products } = useProductStore()
 
-  const componentsProducts = products?.filter(product => product.category === CATEGORIES.COMPONENTS)
+  const componentsProducts = products?.filter(product => product.category === CATEGORIES.REPAIRS)
   return (
     <CategoriesLayout
       title='Todas Nuestras Reparaciónes'

@@ -1,9 +1,11 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { checkingAuthentication } from '../store/auth'
+import { useAuthStore } from './'
 
 export const useCheckAuth = () => {
-  const { status } = useSelector(state => state.auth)
+  const { status } = useAuthStore()
+
   const dispatch = useDispatch()
 
   useEffect(() => {

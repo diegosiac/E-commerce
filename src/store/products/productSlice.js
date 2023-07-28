@@ -10,11 +10,11 @@ export const productSlice = createSlice({
     setProducts: (state, { payload }) => {
       state.products = payload
     },
-    clearAllProducts: (state) => {
-      state.products = null
-    },
     setQuerySearch: (state, { payload }) => {
       state.query = payload
+    },
+    clearAllProducts: (state) => {
+      state.products = null
     },
     clearSearch: (state) => {
       state.query = ''
