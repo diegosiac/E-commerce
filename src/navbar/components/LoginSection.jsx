@@ -15,6 +15,7 @@ export const LoginSection = ({ toggleDrawer }) => {
         to='/auth/login'
         onClick={toggleDrawer()}
         aria-label='Iniciar sesión'
+        data-testid='Iniciar sesión menu'
         title='Iniciar sesión'
       >
         Iniciar sesión

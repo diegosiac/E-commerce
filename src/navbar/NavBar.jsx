@@ -30,7 +30,7 @@ export const NavBar = () => {
           title='Ir Geek Mobile Repair'
           aria-label='Ir Geek Mobile Repair'
         >
-          <img src={logo} alt='Geek Mobile Repair' className='h-10 w-36' />
+          <img src={logo} alt='Geek Mobile Repair Logo' className='h-10 w-36' />
         </Link>
         <MenuHam />
       </Grid>
@@ -50,7 +50,7 @@ export const NavBar = () => {
           title='Ir al carrito de compras'
           aria-label='Ir al carrito de compras'
         >
-          <Badge badgeContent={totalProducts} color='success'>
+          <Badge badgeContent={totalProducts} color='success' data-testid='badgeCart'>
             <ShoppingCartIcon className='text-white' />
           </Badge>
         </IconButton>

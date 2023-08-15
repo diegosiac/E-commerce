@@ -7,7 +7,13 @@ export const ItemsLinks = ({ title, icon, to }) => {
 
   return (
     <ListItem>
-      <ListItemButton LinkComponent={Link} to={to} title={label} aria-label={label}>
+      <ListItemButton
+        LinkComponent={Link}
+        to={to}
+        title={label}
+        aria-label={label}
+        data-testid={`menu-${title}`}
+      >
         <ListItemIcon sx={{ color: 'primary.main' }}>
           {icon}
         </ListItemIcon>

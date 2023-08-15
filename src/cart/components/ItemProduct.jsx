@@ -24,17 +24,20 @@ export const ItemProduct = ({ id, index, name, thumbnail, value, stock, quantity
     <Container
       component='section'
       className='flex flex-wrap py-3 border-b-[1px] border-[#dadada]'
+      data-testid='ItemProduct'
     >
       <Grid
         component='article'
         className='flex pb-4 w-full lg:w-max mr-16'
       >
         <img src={thumbnail} alt={name} className='h-20 aspect-[5/5] bg-gray-100' />
-        <Grid item className='flex justify-between flex-col items-start ml-4'>
+        <Grid
+          item
+          className='flex justify-between flex-col items-start ml-4 w-[280px]'
+        >
           <Typography
             variant='h4'
             component='span'
-            className='whitespace-nowrap'
           >
             {name}
           </Typography>
@@ -60,11 +63,12 @@ export const ItemProduct = ({ id, index, name, thumbnail, value, stock, quantity
             onClick={handleDecrease}
             className='min-w-[35px] text-[#3483fa] text-lg'
             disabled={quantity <= 1 || isStatusChecking}
-            arial-label='Agregar una unidad'
+            arial-label='Quitar una unidad'
           >-
           </Button>
           <span
             className='flex items-center justify-center w-11 relative'
+            id='Product-quantity'
           >
             {quantity}
             {
@@ -79,7 +83,7 @@ export const ItemProduct = ({ id, index, name, thumbnail, value, stock, quantity
             onClick={handleIncrease}
             className='min-w-[35px] text-[#3483fa] text-lg'
             disabled={quantity >= stock || isStatusChecking}
-            arial-label='Quitar una unidad'
+            arial-label='Agregar una unidad'
           >+
           </Button>
         </Grid>

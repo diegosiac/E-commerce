@@ -93,6 +93,7 @@ export const Search = () => {
               endAdornment: <Box className='flex items-center'>
                 <Divider className='h-7' orientation='vertical' />
                 <IconButton
+                  aria-label='Buscar'
                   type='button'
                   title='Buscar'
                   onClick={handleProductsSearch}

@@ -12,6 +12,7 @@ export const UserIcon = ({ userName, to, label }) => {
         to={to}
         title={label}
         aria-label={label}
+        data-testid='Iniciar sesión navbar'
       >
         <Avatar
           className='bg-[#3483fa] w-8 h-8'

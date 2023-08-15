@@ -10,7 +10,7 @@ export const CartPage = () => {
   return (
     <Grid container component='div' className='justify-center my-10'>
 
-      <Grid item className='flex gap-4 md:flex-nowrap flex-wrap w-11/12'>
+      <Grid item className='flex gap-4 lg:flex-nowrap flex-wrap w-11/12'>
         <Cart products={basket} />
         {
           products.length !== 0 &&

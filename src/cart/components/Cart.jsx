@@ -35,7 +35,10 @@ export const Cart = ({ products }) => {
       title='Productos'
       className='flex-col px-5 pb-5'
     >
-      <Grid container className='justify-center items-center min-h-[200px]'>
+      <Grid
+        container
+        className='justify-center items-center min-h-[200px]'
+      >
         {
           products.map(({ id, name, thumbnail, value, stock, quantity }, index) => {
             if (stock === 0) {

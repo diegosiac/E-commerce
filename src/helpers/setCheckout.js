@@ -5,6 +5,6 @@ export const setCheckout = async (body) => {
     const { data } = await ecommerceApi.post('payments', body)
     return data.order
   } catch (error) {
-    return 'request failed'
+    return Error('Error redirect paypal link')
   }
 }

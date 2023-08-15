@@ -6,7 +6,7 @@ import { formaterValue } from '../../helpers'
 export const CardProduct = ({ name, thumbnail, value, id }) => {
   const textLink = name.trim().replace(/ /g, '-')
   return (
-    <Card className='w-[270px] bg-white'>
+    <Card className='w-[270px] bg-white' data-testid='cardProduct'>
       <CardActionArea
         LinkComponent={RouterLink}
         to={`/product/${textLink}?id=${id}`}

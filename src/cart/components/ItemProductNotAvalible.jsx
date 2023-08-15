@@ -23,7 +23,6 @@ export const ItemProductNotAvalible = ({ id, thumbnail, name, index, deleteProdu
           <Typography
             variant='h4'
             component='span'
-            className='whitespace-nowrap'
           >
             {name}
           </Typography>

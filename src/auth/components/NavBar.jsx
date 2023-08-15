@@ -11,7 +11,7 @@ export const NavBar = () => {
       bgcolor='primary.main'
     >
       <Link component={RouterLink} to='/' className='ml-4'>
-        <img src={second} alt='Geek Mobile Repair' className='h-10' />
+        <img src={second} alt='Geek Mobile Repair Logo' className='h-10' />
       </Link>
     </Grid>
   )

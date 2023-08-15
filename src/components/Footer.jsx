@@ -7,10 +7,14 @@ export const Footer = () => {
     <Grid
       container
       component='footer'
-      className='w-full p-9 justify-between'
+      className='p-9'
       bgcolor='primary.main'
     >
-      <Grid container component='address' className='not-italic'>
+      <Grid
+        container
+        component='address'
+        className='not-italic justify-between'
+      >
 
         <Grid
           item
