@@ -16,6 +16,7 @@ export const CardProfile = ({ toggleDrawer, nameUser }) => {
           variant='subtitle1'
           component='span'
           className='ml-3'
+          data-testid='MenuUserName'
         >
           Bienvenido {nameUser}
         </Typography>

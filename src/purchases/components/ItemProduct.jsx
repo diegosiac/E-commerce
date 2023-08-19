@@ -7,6 +7,7 @@ export const ItemProduct = ({ name, thumbnail, value, amount }) => {
     <Grid
       container
       className='border-b border-solid pb-2'
+      data-testid='ItemProduct'
     >
       <img src={thumbnail} alt={name} className='w-20 aspect-w-16 aspect-h-9' />
       <Box className='ml-5 pt-1'>

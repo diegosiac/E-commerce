@@ -4,7 +4,7 @@ import { Card, CardActionArea, CardContent, CardMedia, Divider, Typography } fro
 import { formaterValue } from '../../helpers'
 
 export const CardProduct = ({ name, thumbnail, value, id }) => {
-  const textLink = name.trim().replace(/ /g, '-')
+  const textLink = name.trim().replace(/ /g, '-').replace(/\//g, '')
   return (
     <Card className='w-[270px] bg-white' data-testid='cardProduct'>
       <CardActionArea

@@ -51,7 +51,7 @@ export const AddressForm = ({ handleNext, setData, addressData }) => {
     setZipValidation(zipValidation)
 
     const timer = setTimeout(() => {
-      if (!errors.zip && !errors.countryRegion && touched.countryRegion) {
+      if (!errors.zip && !errors.countryRegion && (touched.countryRegion || values.countryRegion)) {
         validateZip(values.countryRegion, values.zip)
       }
     }, 1300)
@@ -154,6 +154,9 @@ export const AddressForm = ({ handleNext, setData, addressData }) => {
               setFieldValue('countryRegion', newValue.label)
             }}
             getOptionLabel={(option) => option.label}
+            ListboxProps={{
+              'data-testid': 'regionlist'
+            }}
             isOptionEqualToValue={(option, value) => option.label === value.label}
             renderOption={(props, option) => (
               <Box component='li' {...props}>
@@ -231,7 +234,10 @@ export const AddressForm = ({ handleNext, setData, addressData }) => {
           }
           disabled={!((!errors.countryRegion) || values.countryRegion?.label)}
           inputProps={{
-            onChange: handleChange,
+            onChange: (e) => {
+              handleChange(e)
+              setZipValidation(null)
+            },
             value: values.zip,
             onBlur: handleBlur,
             error: touched.zip && (Boolean(errors.zip) || (zipValidation === false)),

@@ -31,7 +31,7 @@ export const ProductPage = () => {
 
   const isExistProductCart = basket.some(product => product.id_product === id)
 
-  const textLink = name.trim().replace(/ /g, '-')
+  const textLink = name.trim().replace(/ /g, '-').replace(/\//g, '')
 
   window.history.pushState(null, '', `/product/${textLink}?id=${id}`)
 

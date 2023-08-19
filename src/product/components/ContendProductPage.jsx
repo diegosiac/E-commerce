@@ -36,15 +36,15 @@ export const ContendProductPage = ({ name, value, stock, thumbnail, description,
             isLoading
               ? <Grid className='flex justify-center min-w-[300px]'>
                 <Skeleton variant='rectangular' className='w-[280px] h-48' />
-                </Grid>
+              </Grid>
               : <picture className='flex justify-center min-w-[300px] '>
                 <img src={thumbnail} alt={name} className='w-60' />
-              </picture>
+                </picture>
           }
 
           <Divider orientation='vertical' flexItem className='ml-1 mr-5 hidden md:block' />
 
-          <Box className='flex-grow'>
+          <Box className='flex-grow mt-8 md:mt-0'>
             {
               isLoading
                 ? (
@@ -58,7 +58,7 @@ export const ContendProductPage = ({ name, value, stock, thumbnail, description,
                     component='h1'
                   >
                   {name}
-                </Typography>
+                  </Typography>
             }
 
             {
@@ -70,7 +70,7 @@ export const ContendProductPage = ({ name, value, stock, thumbnail, description,
                     className='mt-3 block'
                   >
                   {`${formaterValue(value)} MXN`}
-                  </Typography>
+                </Typography>
             }
 
             {
@@ -82,7 +82,7 @@ export const ContendProductPage = ({ name, value, stock, thumbnail, description,
                     className='mt-6 block'
                   >
                   Stock disponible
-                  </Typography>
+                </Typography>
             }
 
             {
@@ -94,7 +94,7 @@ export const ContendProductPage = ({ name, value, stock, thumbnail, description,
                     className='block'
                   >
                   {textStock}
-                  </Typography>
+                </Typography>
             }
             {
               isAuthenticated
@@ -114,7 +114,7 @@ export const ContendProductPage = ({ name, value, stock, thumbnail, description,
                     to='/auth'
                     fullWidth
                   >AGREGAR AL CARRITO
-                  </Button>
+                </Button>
             }
           </Box>
 
@@ -136,7 +136,7 @@ export const ContendProductPage = ({ name, value, stock, thumbnail, description,
                     className='mb-3'
                   >
                   Información Del Producto
-                  </Typography>
+                </Typography>
             }{
               isLoading
                 ? (
@@ -152,7 +152,7 @@ export const ContendProductPage = ({ name, value, stock, thumbnail, description,
                     color='grey.800'
                   >
                   {description}
-                  </Typography>
+                </Typography>
             }
 
       </Grid>

@@ -16,7 +16,7 @@ export const DetailsShop = ({ id, shippingAddress, totalValue, value, dateShop, 
       <Box className='flex p-2 gap-5 border-b border-solid w-full'>
         <Typography component='h5'>Pedido el {dateShopDay}</Typography>
         <Typography component='h5'>{`${isCompleteDelivery} ${dateDeliveryDay}`}</Typography>
-        <Typography component='h5'>Pedido n.º {id}</Typography>
+        <Typography component='h5' data-testid='purchaseId'>Pedido n.º <span>{id}</span></Typography>
       </Box>
 
       <Grid

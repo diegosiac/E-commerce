@@ -81,29 +81,7 @@ describe('Tests on the authentication page', () => {
     const passwordUser = '9f83202f93'
 
     after(() => {
-      cy.request({
-        method: 'POST',
-        url: `${Cypress.env('API_URL')}/admin/auth`,
-        headers: {
-          Authorization: Cypress.env('SECRET_AUTH_ADMIN')
-        },
-        body: {
-          email: Cypress.env('EMAIL_ADMIN'),
-          password: Cypress.env('PASSWORD_ADMIN')
-        }
-      }).then(({ body }) => {
-        cy.request({
-          method: 'DELETE',
-          url: `${Cypress.env('API_URL')}/admin/delete/user`,
-          form: true,
-          headers: {
-            Authorization: body.user.token
-          },
-          body: {
-            email: emailUser
-          }
-        })
-      })
+      cy.deleteAccont(emailUser)
     })
 
     beforeEach(() => {

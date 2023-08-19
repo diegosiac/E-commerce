@@ -34,6 +34,7 @@ export const ProfilePage = () => {
           <Typography
             variant='h4'
             component='span'
+            data-testid='CardUserName'
           >
             Hola {user.name}
           </Typography>
@@ -44,7 +45,7 @@ export const ProfilePage = () => {
           component='section'
         >
           <SectionProfile title='Mis Datos'>
-            <SectionItems title='Nombre' desc={user.name} />
+            <SectionItems data-testid='InfoUserName' title='Nombre' desc={user.name} />
             <SectionItems title='Correo' desc={user.email} />
           </SectionProfile>
 

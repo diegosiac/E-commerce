@@ -186,7 +186,6 @@ describe('Tests on the interface and web page navigation', () => {
 
       cy.get('a[aria-label="IR A MIS COMPRAS"]').click()
       cy.get('h1').contains('Mis Compras').should('be.visible')
-      cy.get('span').contains('Aún no ha hecho una compra').should('be.visible')
 
       cy.get('a[aria-label="Ir al Perfil"]').click()
       cy.get('span').contains('Mis Datos').should('be.visible')

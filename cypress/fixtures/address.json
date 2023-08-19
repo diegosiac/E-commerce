@@ -1,0 +1,11 @@
+{
+    "name": "test",
+    "lastName": "demo",
+    "addressLine": "VICENTE GUERRERO 4",
+    "phoneNumber": "5623232323",
+    "state": "Ciudad de Mexico",
+    "locality": "Iztapalapa",
+    "sublocality": "APATLACO",
+    "country": "Mexico",
+    "zip": "09420"
+}
