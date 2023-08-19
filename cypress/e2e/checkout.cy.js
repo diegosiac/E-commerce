@@ -1,5 +1,5 @@
 
-describe('template spec', () => {
+describe('Complete path-to-purchase testing', () => {
   let userDetails
 
   let addressData
@@ -14,7 +14,7 @@ describe('template spec', () => {
     })
   })
 
-  it('passes', () => {
+  it('Proof of purchase', () => {
     cy.visit('/')
 
     cy.get('img[alt="Geek Mobile Repair"]').as('homeImg')
@@ -76,7 +76,7 @@ describe('template spec', () => {
     cy.get('@homeImg').should('be.visible')
   })
 
-  describe('Name of the group', () => {
+  describe('Proof of purchase on mobile screen', () => {
     const newUser = {
       name: 'Demo king',
       email: 'demoking@outlook.com',
@@ -87,7 +87,7 @@ describe('template spec', () => {
       cy.deleteAccont(newUser.email)
     })
 
-    it('should ', () => {
+    it('Proof of purchase ', () => {
       cy.visit('/')
       cy.viewport(550, 750)
 

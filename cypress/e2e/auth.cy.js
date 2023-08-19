@@ -1,5 +1,5 @@
 
-describe('Tests on the authentication page', () => {
+describe('Tests on user authentication page', () => {
   let userDetails
 
   before(() => {
@@ -8,12 +8,12 @@ describe('Tests on the authentication page', () => {
     })
   })
 
-  describe('Name of the group', () => {
+  describe('Tests on login page', () => {
     beforeEach(() => {
       cy.visit('/auth')
     })
 
-    it('should ', () => {
+    it('It should show the error messages correctly', () => {
       cy.get('input[name="email"]').as('inputEmail')
       cy.get('input[name="password"]').as('inputPassword')
 
@@ -55,7 +55,7 @@ describe('Tests on the authentication page', () => {
       cy.get('div').contains('El correo o la contraseña son incorrectas').should('be.visible')
     })
 
-    it('should ', () => {
+    it('You must log in correctly ', () => {
       cy.get('input[name="email"]').as('inputEmail')
       cy.get('input[name="password"]').as('inputPassword')
 
@@ -75,7 +75,7 @@ describe('Tests on the authentication page', () => {
     })
   })
 
-  describe('Name of the group', () => {
+  describe('Tests on the registration page', () => {
     const namUser = 'Demon'
     const emailUser = 'demon117@gmail.com'
     const passwordUser = '9f83202f93'
@@ -88,7 +88,7 @@ describe('Tests on the authentication page', () => {
       cy.visit('/auth/register')
     })
 
-    it('should ', () => {
+    it('It should show the error messages correctly', () => {
       cy.get('input[name="name"]').as('inputName')
       cy.get('input[name="email"]').as('inputEmail')
       cy.get('input[name="password"]').as('inputPassword')
@@ -122,7 +122,7 @@ describe('Tests on the authentication page', () => {
       cy.get('div').contains('Un usuario ya existe con ese usuario').should('be.visible')
     })
 
-    it('should ', () => {
+    it('You must register correctly', () => {
       cy.get('input[name="name"]').as('inputName')
       cy.get('input[name="email"]').as('inputEmail')
       cy.get('input[name="password"]').as('inputPassword')
