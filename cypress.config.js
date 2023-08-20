@@ -7,7 +7,6 @@ export default defineConfig({
     chromeWebSecurity: false,
     experimentalModifyObstructiveThirdPartyCode: true,
     setupNodeEvents (on, config) {
-      // implement node event listeners here
     }
   }
 })
