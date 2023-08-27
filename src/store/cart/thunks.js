@@ -5,7 +5,7 @@ export const setBasket = ({ newBasket, id }) => {
   return async (dispatch) => {
     try {
       dispatch(changeStatusItem(id))
-      const { data } = await ecommerceApi.put('user/update/basket', newBasket)
+      const { data } = await ecommerceApi.put('user/update/basket', { newBasket })
       dispatch(updateBasket(data.user.products))
       dispatch(clearStatusItem())
     } catch (error) {

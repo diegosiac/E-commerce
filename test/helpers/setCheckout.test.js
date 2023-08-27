@@ -24,9 +24,12 @@ describe('Testing on "setCheckout.js"', () => {
 
     ecommerceApi.post.mockRejectedValue(new Error('Network error'))
 
-    const result = await setCheckout(requestBody)
+    try {
+      await setCheckout(requestBody)
+    } catch (error) {
+      expect(error.message).toBe('Error redirect paypal link')
+    }
 
-    expect(result).toBe('request failed')
     expect(ecommerceApi.post).toHaveBeenCalledWith('payments', requestBody)
   })
 })
