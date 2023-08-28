@@ -12,11 +12,11 @@ export const DetailsShop = ({ id, shippingAddress, totalValue, value, dateShop, 
   const isCompleteDelivery = deliveryDay.status === STATUSDELIVERY.COMPLETE ? 'Entregado el' : 'Se entrega el'
 
   return (
-    <Grid container className='bg-white'>
+    <Grid container className='bg-white outline-red-600'>
       <Box className='flex p-2 gap-5 border-b border-solid w-full'>
         <Typography component='h5'>Pedido el {dateShopDay}</Typography>
         <Typography component='h5'>{`${isCompleteDelivery} ${dateDeliveryDay}`}</Typography>
-        <Typography component='h5' data-testid='purchaseId'>Pedido n.º <span>{id}</span></Typography>
+        <Typography component='h5' data-testid='purchaseId' className='break-all'>Pedido n.º <span>{id}</span></Typography>
       </Box>
 
       <Grid

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import { Box, Grid, Typography } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import { formaterValue, getDayTranform, STATUSDELIVERY } from '../../helpers'
 import { ItemProduct, TitleInfo } from './'
 
@@ -18,21 +18,26 @@ export const ItemPurchases = ({ id, value, dateShop, products, delivery }) => {
     >
       <Grid
         container
-        className='justify-between p-3 border-b border-solid flex-nowrap whitespace-nowrap'
+        className='justify-between p-2 border-b border-solid flex-nowrap gap-3'
       >
-        <Box className='flex gap-5'>
-          <TitleInfo title='PEDIDO REALIZADO' value={dateShopDay} />
-          <TitleInfo title='TOTAL' value={`${formaterValue(value)} MXN`} />
-        </Box>
+        <TitleInfo
+          title='PEDIDO REALIZADO'
+          value={dateShopDay}
+        />
 
-        <Box className='text-right ml-3'>
-          <TitleInfo
-            title={`PEDIDO N.º ${id}`}
-            value='Ver detalles del pedido'
-            link
-            to={`order-details?id=${id}`}
-          />
-        </Box>
+        <TitleInfo
+          title='TOTAL'
+          className='whitespace-nowrap'
+          value={`${formaterValue(value)} MXN`}
+        />
+
+        <TitleInfo
+          title={`PEDIDO N.º ${id}`}
+          className='text-right'
+          value='Ver detalles del pedido'
+          link
+          to={`order-details?id=${id}`}
+        />
       </Grid>
 
       <Typography
@@ -48,11 +53,14 @@ export const ItemPurchases = ({ id, value, dateShop, products, delivery }) => {
         className='px-3 mt-3 flex-col gap-2'
       >
         {
-          products.map(({ _id, ...props }) => {
+          products.map(({ _id, thumbnail, name, value, quantity }) => {
             return (
               <ItemProduct
                 key={_id}
-                {...props}
+                name={name}
+                thumbnail={thumbnail}
+                value={value}
+                quantity={quantity}
               />
             )
           })

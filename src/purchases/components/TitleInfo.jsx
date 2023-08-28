@@ -2,13 +2,12 @@ import { Link as routerLink } from 'react-router-dom'
 import { Box, Link, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
 
-export const TitleInfo = ({ title, value, link, to }) => {
+export const TitleInfo = ({ title, value, link, to, className }) => {
   return (
-    <Box className='flex flex-col'>
-
+    <Box className={`flex flex-col ${className}`}>
       <Typography
         component='span'
-        className='text-xs text-[#565959]'
+        className='text-xs text-[#565959] break-all'
       >
         {title}
       </Typography>
@@ -22,14 +21,14 @@ export const TitleInfo = ({ title, value, link, to }) => {
               aria-label='Ver detalles del pedido'
             >
             {value}
-            </Link>
+          </Link>
           : <Typography
               variant='subtitle2'
               component='span'
               className='text-[#565959]'
             >
             {value}
-            </Typography>
+          </Typography>
       }
     </Box>
   )
@@ -39,5 +38,10 @@ TitleInfo.proptypes = {
   title: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   link: PropTypes.bool,
+  className: PropTypes.string,
   to: PropTypes.string
+}
+
+TitleInfo.defaultProps = {
+  className: ''
 }

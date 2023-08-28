@@ -61,7 +61,7 @@ export const ExecutePaymentPage = () => {
                   name={name}
                   thumbnail={thumbnail}
                   value={value}
-                  amount={quantity}
+                  quantity={quantity}
                 />
               )
             })

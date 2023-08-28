@@ -39,14 +39,14 @@ export const OrderDetailsPage = () => {
           className='flex-col gap-5 p-4 bg-white'
         >
           {
-            products.map(({ _id, name, thumbnail, value, amount }) => {
+            products.map(({ _id, name, thumbnail, value, quantity }) => {
               return (
                 <ItemProduct
                   key={_id}
                   name={name}
                   thumbnail={thumbnail}
                   value={value}
-                  amount={amount}
+                  quantity={quantity}
                 />
               )
             })
