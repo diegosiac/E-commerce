@@ -74,9 +74,5 @@ $ npm run cypress:open
 ```
 ## Recursos necesarios para este proyecto
 
- - Api PayPal:
-	 - [Dashboard](https://developer.paypal.com/home)
-	 - [Docs](https://developer.paypal.com/api/rest/)
-
  - Maps Google Apis
 	 - [Docs](https://developers.google.com/maps/documentation/geocoding)
