@@ -42,7 +42,7 @@ VITE_GOOGLE_KEY=
 ```
 
 Cree un archivo .cypress.env.json que incluya:
-```sh 
+```json
 {
   "API_URL": "",
   "SECRET_AUTH_ADMIN": "",
